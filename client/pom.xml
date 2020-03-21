@@ -27,7 +27,7 @@
 		<profile>
 			<id>web-client</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
