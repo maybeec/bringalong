@@ -60,14 +60,14 @@
 								</configuration>
 							</execution>
 							<execution>
-								<id>TSLint (npm run-script lint:ci)</id>
+								<id>TSLint (npm run-script lint)</id>
 								<phase>generate-resources</phase>
 								<goals>
 									<goal>npm</goal>
 								</goals>
 								<configuration>
 									<skip>${maven.test.skip}</skip>
-									<arguments>run-script lint:ci</arguments>
+									<arguments>run-script lint</arguments>
 								</configuration>
 							</execution>
 
@@ -83,14 +83,14 @@
 							</execution>
 
 							<execution>
-								<id>JavaScript Tests (npm run-script test:ci)</id>
+								<id>JavaScript Tests (npm run-script test)</id>
 								<phase>test</phase>
 								<goals>
 									<goal>npm</goal>
 								</goals>
 								<configuration>
 									<skip>${maven.test.skip}</skip>
-									<arguments>run-script test:ci</arguments>
+									<arguments>run-script test</arguments>
 								</configuration>
 							</execution>
 						</executions>
