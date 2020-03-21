@@ -8,13 +8,11 @@ cache:
 services:
   - xvfb
 stages:
-  - name: Build & Test
+  - name: CI & CD
 jobs:
   include:
-    - stage: Build & Test
+    - stage: CI & CD
       script: mvn clean install -Pweb-client
-    - stage: Deploy
-      script: skip
       deploy:
         provider: heroku
         api_key:
