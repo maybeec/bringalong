@@ -89,7 +89,7 @@
 								</goals>
 								<configuration>
 									<skip>${maven.test.skip}</skip>
-									<arguments>run-script test</arguments>
+									<arguments>run-script test:ci</arguments>
 								</configuration>
 							</execution>
 						</executions>
