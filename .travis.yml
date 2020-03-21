@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - openjdk11
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+stages:
+  - name: Build & Test
+jobs:
+  include:
+    - stage: Build & Test
+      script: mvn clean install -Pweb-client
