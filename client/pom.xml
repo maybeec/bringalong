@@ -16,7 +16,7 @@
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss z</maven.build.timestamp.format>
 
 		<web.client.dir>src/main/web</web.client.dir>
-		<web.client.dist.dir>dist/web-client</web.client.dist.dir>
+		<web.client.dist.dir>dist/bringalong</web.client.dist.dir>
 		<node.version>v12.16.1</node.version>
 		<npm.version>6.13.4</npm.version>
 		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
@@ -98,10 +98,10 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-resources-plugin</artifactId>
 						<executions>
-							<!-- Filtering the src/main/web-client/dist/web-client/index.html 
+							<!-- Filtering the src/main/web-client/dist/bringalong/index.html 
 								to set the current version and build timestamp as meta tags in the HTML document 
 								head. Technically, a copy of index.html has to be created: first the file 
-								is filtered and copied to target/client and then copied to src/main/web/dist/web-client 
+								is filtered and copied to target/client and then copied to src/main/web/dist/bringalong 
 								overwriting the previous version. -->
 							<execution>
 								<id>filter-index.html</id>
