@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "bringalong"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "todo@test.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "test.host.com"
+basePath: "/"
+schemes:
+- "https"
+- "http"
+paths:
+  /stores/{plz}:
+    get:
+      summary: ""
+      description: ""
+      operationId: "searchStores"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "plz"
+        description: ""
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/SearchStoresResult"
+definitions:
+  SearchStoresResult:
+    type: "object"
+    properties:
+      stores:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Store"
+  Store:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      address:
+        type: "string"
