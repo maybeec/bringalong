@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar server/target/bringalong-server-bootified.war
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar server/target/bringalong-server-bootified.war
