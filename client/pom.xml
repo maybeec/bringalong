@@ -21,7 +21,6 @@
 		<npm.version>6.13.4</npm.version>
 		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
 		<npm.runTests>true</npm.runTests>
-		<npm.build.env>prod</npm.build.env>
 	</properties>
 
 	<profiles>
@@ -72,13 +71,13 @@
 							</execution>
 
 							<execution>
-								<id>Build Client (npm run-script build:${npm.build.env})</id>
+								<id>Build Client (npm run-script build)</id>
 								<phase>generate-resources</phase>
 								<goals>
 									<goal>npm</goal>
 								</goals>
 								<configuration>
-									<arguments>run-script build:${npm.build.env}</arguments>
+									<arguments>run-script build --prod</arguments>
 								</configuration>
 							</execution>
 
