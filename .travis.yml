@@ -14,10 +14,11 @@ jobs:
     - stage: Build & Test
       script: mvn clean install -Pweb-client
     - stage: Deploy
-      deploy: &heroku
+      script: skip
+      deploy:
         provider: heroku
         api_key:
-          secure: FhsLNE4amJmGmpPQ9vypzEX7BUKwB6FbjrRy7lI+sOE9AY14jEklSaWwPDGVEggQ2XGsFgcWJpnsXymCLjK6dxgLObsWJlSjoSuv4nFPNqhnbovM8b4kRTCfS5tDWhAjoDCv4pPf/rFPtxzdAqtcvlP8DQpLtcgf1JYTjfiHmDOLFR4mcF/aZ98MxhtB1QMDPWLQZ0XzihzYXK6lfbcYyt0pPkn2K4bHGuen9U5ZUIRn16O5qw3sKkqcqe7gjR9yguh09CjwYTGjAAm8qa6eKsem3TXqOZQnVaC5jdzeeVI4mpLHXHpWY18Eh6uhmAGgvLu932EikySCz+evsqwn4FJWp6I0uRbU3fhUVcDH8AoBN6Okl0MO0O+/xNAc8258USzQSqD1sngvKlH/pP0wyU85zd8KbyER0Gx9j39wkwdAErUc0Xm4h1fUyxVDh0/TE9bxSr7F+0gsdgPaxQ4OzN1043c80oBblppnLEUGLHgEvBvWD8xGZdx9VENdDwxXFSXA4tJuxUxTkmLz787o5j7EA+2+pUoGMjHeEEvUuaXSWYs6AGq/FyCSvBJuDlmr60J4aGNpJA/eM9aUNE3wEz0cSmNYFfQPQeYuxdF0pQSdfzUrJr42lHU/ZWcY4mvqHraGhcS6McDIiz+r/DwemP/+/xQl4BOp6Bhk/1GMovs=
+          secure: bLT9bhFEVw290dIq9DfetpAz6O4diYfe8R33vZs0D+ly0fYDzExVsJv28XPyTLltkpcnyJZN37c8KXOHu4MKh/Un4JS/HIb2WRyC1qzis0UZuICuNGshN1Zjn0VMeUXyvwZjQ/vcodXsH0xe0XpWQfuz5JRKiQ2UbKFhZoXgyfPKNhx+DpVK/ms7JDHBSOHqYMq3Y+60TVo8CZVjlgZAm8oaL+HyPzL+iN3p3icX0zgMXut3bwSlqichvrqXE0pBFKhjzrO8+NKkMDfA2IgVPQYV0sVTljQs+rrEM8OmQnj0t07k99YR7Do1BpTkARMFb5zLkLdXM+WQrL4uTNa0zHAzL6iGpia5HnnobIEY1QDhN/M+uE93QaN9LuDmQ7VNivLLRSuTSp0sgfmC4dN9GXn9UdU9lgzXZN1JBCfAjPwIxr875viIIVE+vt4Ul6ZMDvKen/G3aiEQdjp2XDCbIXACdkU9+gnih61foocxYuxZv2Lg77roWjfzaeWCrspGL1A8Uye8lyqWr0chEa29rY/TCcfeeD+x4OE45O1lqKQr6NiFbgynWBlUoS+WiSI6f5VQ6AWlFCwm6fMsfjD92GpDsWQPlLLl6SA72m6N+Nu3BC5I0fXBKP8iSjR53U+8Yovhek4P85hfAGsVMwTOBjz3cOKS7JEdRSds55RW7WQ=
         app: bringalongorg
         run:
           - java -Dserver.port=$PORT $JAVA_OPTS -jar server/target/bringalong-server-bootified.war
