@@ -4,6 +4,8 @@ jdk:
 cache:
   directories:
     - "$HOME/.m2/repository"
+services:
+  - xvfb
 stages:
   - name: Build & Test
 jobs:
