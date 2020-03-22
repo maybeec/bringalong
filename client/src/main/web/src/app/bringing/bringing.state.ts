@@ -3,10 +3,10 @@ import { Store } from 'src/api';
 
 export interface BringingUiState {
     plz: string;
-    stores: Store[];
 }
 
 export interface BringingAppState {
+    stores: Store[];
 }
 
 export interface BringingState {
@@ -16,8 +16,9 @@ export interface BringingState {
 
 export const initialState: BringingState = {
     uiState: {
-        plz: '123',
-        stores: []
+        plz: '123'
     },
-    appState: {}
+    appState: {
+        stores: []
+    }
 };

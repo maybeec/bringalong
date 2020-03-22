@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { BringingState, selectPlz } from './bringing.state';
+import { BringingState } from './bringing.state';
 import { searchForPlz } from './bringing.actions';
 
 @Component({
@@ -15,7 +15,6 @@ export class BringingComponent implements OnInit {
   constructor(private store: Store<BringingState>) { }
 
   ngOnInit(): void {
-    console.log("ngOnInit",this.store);
     this.store.select('uiState', 'plz').subscribe((plz => this.plz = plz));
   }
 
