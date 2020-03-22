@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService, GetStoreOrdersResult } from 'src/api';
-import { getOrders, getOrdersSuccess, getOrdersError } from './store-orders.actions';
+import { DefaultService, GetStoreOrdersResult, BringOrderResult } from 'src/api';
+import { getOrders, getOrdersSuccess, getOrdersError, bringOrder, bringOrderSuccess, bringOrderError } from './store-orders.actions';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
 
 
 @Injectable()
@@ -22,8 +24,26 @@ export class StoreOrdersEffects {
         )
     );
 
+    bringOrder$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(bringOrder),
+            mergeMap(
+                (payload) => (this.service.bringOrder(payload.id, 'body') as Observable<BringOrderResult>)
+                .pipe(
+                    map(result =>
+                        {
+                            this.store.dispatch(getOrders({id: result.storeId }));
+                            return bringOrderSuccess(result);
+                        }),
+                    catchError(() => of(bringOrderError()))
+                )
+            )
+        )
+    );
+
     constructor(
         private actions$: Actions,
-        private service: DefaultService
+        private service: DefaultService,
+        private store: Store<AppState>
     ) {}
 }

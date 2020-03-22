@@ -13,6 +13,8 @@
 
 export interface BringOrderResult { 
     id?: number;
+    storeId?: number;
+    name?: string;
     /**
      * Complete address
      */

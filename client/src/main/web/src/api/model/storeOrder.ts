@@ -14,7 +14,11 @@
 export interface StoreOrder { 
     id?: number;
     /**
-     * Shortend address
+     * Only filled when order is marked for pickup.
+     */
+    name?: string;
+    /**
+     * Shortend address. Complete address when order is marked for pickup.
      */
     address?: string;
     /**

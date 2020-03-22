@@ -38,7 +38,7 @@ paths:
   /orders/{storeId}:
     get:
       summary: ""
-      description: ""
+      description: "Get all open orders and orders the user will bring"
       operationId: "getStoreOrders"
       consumes:
       - "application/json"
@@ -167,9 +167,12 @@ definitions:
       id:
         type: "integer"
         format: "int32"
+      name:
+        type: "string"
+        description: "Only filled when order is marked for pickup."
       address:
         type: "string"
-        description: "Shortend address"
+        description: "Shortend address. Complete address when order is marked for pickup."
       pickupcode:
         type: "string"
         description: "Code needed to pick of the order. Only filled when order is marked for pickup."
@@ -254,6 +257,8 @@ definitions:
       id:
         type: "integer"
         format: "int32"
+      name:
+        type: "string"
       address:
         type: "string"
         description: "Complete address"
