@@ -1,8 +1,14 @@
 <div>
-    <form (ngSubmit)="order()">
-        <div *ngFor="let product of (products$ | async)">
+    <div *ngIf="(products$ | async).length == 0">
+        Dieser Bäcker nimmt leider noch nicht an diesem Angebot teil. Bitten Sie ihn doch, dies in Zukunft zu tun.
+    </div>
+    <form (ngSubmit)="order()"  *ngIf="(products$ | async).length > 0">
+        <div *ngFor="let product of (products$ | async); let i = index">
             <div>{{product.name}}</div>
             <div>{{product.price}}</div>
+            <div><input id="{{product.id}}" name="{{product.id}}" [(ngModel)]="orderItems[i]"/></div>
         </div>
+        <div>Summe: {{sum() | async}}</div>
+        <button [disabled] = "(sum() | async) == 0">Bestellen</button>
     </form>
 </div>

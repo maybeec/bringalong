@@ -56,6 +56,30 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/LoadStoreOrdersResult"
+    post:
+      summary: ""
+      description: ""
+      operationId: "createOrder"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "storeId"
+        description: ""
+        required: true
+        type: "integer"
+        format: "int32"
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/CreateOrderRequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CreateOrderResult"
   /products/{storeId}:
     get:
       summary: ""
@@ -130,3 +154,25 @@ definitions:
         type: "string"
       price:
         type: "number"
+  CreateOrderRequest:
+    type: "object"
+    properties:
+      orderItems:
+        type: "array"
+        items: 
+          $ref: "#/definitions/OrderItem"
+  OrderItem:
+    type: "object"
+    properties:
+      productId:
+        type: "integer"
+        format: "int32"
+      amount:
+        type: "integer"
+        format: "int32"
+  CreateOrderResult:
+    type: "object"
+    properties:
+      orderId:
+        type: "integer"
+        format: "int32"

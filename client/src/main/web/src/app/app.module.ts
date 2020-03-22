@@ -20,6 +20,8 @@ import { storeOrdersReducer } from './store-orders/store-orders.reducer';
 import { StoreOrdersEffects } from './store-orders/store-orders.effects';
 import { OrderComponent } from './order/order.component';
 import { OrderEffects } from './order/order.effects';
+import { orderReducer } from './order/order.reducer';
+import { appReducer } from './app.reducer';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration();
@@ -48,7 +50,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     ApiModule.forRoot(apiConfigFactory),
-    StoreModule.forRoot({ selectStore: selectStoreReducer, storeOrders: storeOrdersReducer }),
+    StoreModule.forRoot({app: appReducer, selectStore: selectStoreReducer, storeOrders: storeOrdersReducer, order: orderReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
