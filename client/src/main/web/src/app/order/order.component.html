@@ -3,6 +3,13 @@
         Dieser Bäcker nimmt leider noch nicht an diesem Angebot teil. Bitten Sie ihn doch, dies in Zukunft zu tun.
     </div>
     <form (ngSubmit)="order()"  *ngIf="(products$ | async).length > 0">
+        <div>
+            Bitte geben Sie hier die den frühst möglichen und den letzt möglichen Liefertermin an. Wenn sich bis zum letzt möglichen Liefertermin niemand gefunden hat, der die Bestellung mitbringen kann wird diese storiert und Sie erhalten das Geld zurück.
+            Startdatum: <input id="startDate" name="startDate" [(ngModel)]="startDate"/>
+            Startuhrzeit: <input id="startTime" name="startTime" [(ngModel)]="startTime"/>
+            Enddatum: <input id="endDate" name="endDate" [(ngModel)]="endDate"/>
+            Enduhrzeit: <input id="endTime" name="endTime" [(ngModel)]="endTime"/>
+        </div>
         <div *ngFor="let product of (products$ | async); let i = index">
             <div>{{product.name}}</div>
             <div>{{product.price}}</div>

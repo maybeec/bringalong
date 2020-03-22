@@ -13,5 +13,9 @@ import { OrderItem } from './orderItem';
 
 
 export interface CreateOrderRequest { 
+    startDate?: string;
+    startTime?: string;
+    endDate?: string;
+    endTime?: string;
     orderItems?: Array<OrderItem>;
 }

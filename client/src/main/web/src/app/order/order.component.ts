@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { loadProductsForStore, createOrder } from './order.actions';
 import { AppState } from '../app.state';
 import { map } from 'rxjs/operators';
-import { CreateOrderRequest } from 'src/api/model/createOrderRequest';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-order',
@@ -18,10 +18,20 @@ export class OrderComponent implements OnInit {
   id: number;
   products$: Observable<Product[]>;
   orderItems: number[];
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    const now = moment();
+    this.startDate = now.format('YYYY-MM-DD');
+    this.startTime = now.format('HH:mm');
+    this.endDate = now.add(1, 'days').format('YYYY-MM-DD');
+    this.endTime = now.add(1, 'days').format('HH:mm');
+
     this.id = +this.route.snapshot.paramMap.get('id');
     this.products$ = this.store.select('order', 'appState', 'products');
     this.products$.subscribe(products => {
@@ -43,7 +53,11 @@ export class OrderComponent implements OnInit {
         }
       });
     });
-    this.store.dispatch(createOrder({storeId: this.id, request: {orderItems}}));
+    this.store.dispatch(createOrder({storeId: this.id, request: {orderItems,
+                                                                startDate: this.startDate,
+                                                                startTime: this.startTime,
+                                                                endDate: this.endDate,
+                                                                endTime: this.endTime}}));
     this.router.navigate(['/']);
   }
 
