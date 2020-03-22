@@ -9,13 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Product } from './product';
 
 
-export interface StoreOrder { 
-    id?: number;
-    address?: string;
-    /**
-     * Code needed to pick of the order. Only filled when order is marked for pickup.
-     */
-    pickupcode?: string;
+export interface GetProductsForStoreResult { 
+    products?: Array<Product>;
 }

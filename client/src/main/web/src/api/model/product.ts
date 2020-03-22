@@ -11,11 +11,8 @@
  */
 
 
-export interface StoreOrder { 
+export interface Product { 
     id?: number;
-    address?: string;
-    /**
-     * Code needed to pick of the order. Only filled when order is marked for pickup.
-     */
-    pickupcode?: string;
+    name?: string;
+    price?: number;
 }
