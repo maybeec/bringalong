@@ -19,6 +19,7 @@ import { StoreOrdersComponent } from './store-orders/store-orders.component';
 import { storeOrdersReducer } from './store-orders/store-orders.reducer';
 import { StoreOrdersEffects } from './store-orders/store-orders.effects';
 import { OrderComponent } from './order/order.component';
+import { OrderEffects } from './order/order.effects';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration();
@@ -52,7 +53,7 @@ const routes: Routes = [
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([SelectStoreEffects, StoreOrdersEffects])
+    EffectsModule.forRoot([SelectStoreEffects, StoreOrdersEffects, OrderEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],
