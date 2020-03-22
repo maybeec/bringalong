@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { searchForPlz, searchForPlzSuccess } from './bringing.actions';
-import { initialState } from './bringing.state';
+import { searchForPlz, searchForPlzSuccess } from './select-store.actions';
+import { initialState } from './select-store.state';
 
 
-const bringingReducerCreator = createReducer(initialState,
+const selectStoreReducerCreator = createReducer(initialState,
     on(searchForPlz, (state, payload) => {
         return { ...state,
             uiState: {
@@ -22,6 +22,6 @@ const bringingReducerCreator = createReducer(initialState,
     })
 );
 
-export function bringingReducer(state, action) {
-    return bringingReducerCreator(state, action);
+export function selectStoreReducer(state, action) {
+    return selectStoreReducerCreator(state, action);
 }

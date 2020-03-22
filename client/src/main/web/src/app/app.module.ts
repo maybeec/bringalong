@@ -7,9 +7,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BringingComponent } from './bringing/bringing.component';
-import { bringingReducer } from './bringing/bringing.reducer';
-import { BringingEffects } from './bringing/bringing.effects';
+import { SelectStoreComponent } from './select-store/select-store.component';
+import { selectStoreReducer } from './select-store/select-store.reducer';
+import { SelectStoreEffects } from './select-store/select-store.effects';
 import { environment } from 'src/environments/environment';
 import { ApiModule, Configuration } from 'src/api';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,14 +25,14 @@ export function apiConfigFactory(): Configuration {
 
 const routes: Routes = [
   { path: '', component: ModeComponent },
-  { path: 'bringing', component: BringingComponent },
+  { path: 'bringing', component: SelectStoreComponent },
   { path: 'bringing/:id', component: StoreOrdersComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    BringingComponent,
+    SelectStoreComponent,
     ModeComponent,
     StoreOrdersComponent
   ],
@@ -43,12 +43,12 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     ApiModule.forRoot(apiConfigFactory),
-    StoreModule.forRoot({ bringing: bringingReducer, storeOrders: storeOrdersReducer }),
+    StoreModule.forRoot({ selectStore: selectStoreReducer, storeOrders: storeOrdersReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([BringingEffects, StoreOrdersEffects])
+    EffectsModule.forRoot([SelectStoreEffects, StoreOrdersEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],

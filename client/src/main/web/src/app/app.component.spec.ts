@@ -1,10 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { BringingComponent } from './bringing/bringing.component';
+import { SelectStoreComponent } from './select-store/select-store.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { bringingReducer } from './bringing/bringing.reducer';
+import { selectStoreReducer } from './select-store/select-store.reducer';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,11 +12,11 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         FormsModule,
-        StoreModule.forRoot({ bringing: bringingReducer })
+        StoreModule.forRoot({ selectStore: selectStoreReducer })
       ],
       declarations: [
         AppComponent,
-        BringingComponent
+        SelectStoreComponent
       ],
     }).compileComponents();
   }));

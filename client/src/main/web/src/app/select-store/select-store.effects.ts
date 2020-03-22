@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { searchForPlz, searchForPlzSuccess, searchForPlzError } from './bringing.actions';
+import { searchForPlz, searchForPlzSuccess, searchForPlzError } from './select-store.actions';
 import { DefaultService, SearchStoresResult } from 'src/api';
 
 
 @Injectable()
-export class BringingEffects {
+export class SelectStoreEffects {
 
     searchForPlz$ = createEffect(() =>
         this.actions$.pipe(
