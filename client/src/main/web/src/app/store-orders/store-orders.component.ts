@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { loadOrders } from './store-orders.actions';
+import { getOrders } from './store-orders.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { StoreOrder } from 'src/api';
@@ -20,6 +20,6 @@ export class StoreOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id');
     this.orders$ = this.store.select('storeOrders', 'appState', 'orders');
-    this.store.dispatch(loadOrders({id: this.id}));
+    this.store.dispatch(getOrders({id: this.id}));
   }
 }

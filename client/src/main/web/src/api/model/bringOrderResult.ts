@@ -9,9 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { StoreOrder } from './storeOrder';
 
 
-export interface LoadStoreOrdersResult { 
-    orders?: Array<StoreOrder>;
+export interface BringOrderResult { 
+    id?: number;
+    /**
+     * Complete address
+     */
+    address?: string;
+    /**
+     * Code needed to pick of the order. Only filled when order is marked for pickup.
+     */
+    pickupcode?: string;
 }

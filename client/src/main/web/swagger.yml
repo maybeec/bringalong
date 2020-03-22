@@ -39,7 +39,7 @@ paths:
     get:
       summary: ""
       description: ""
-      operationId: "loadOrders"
+      operationId: "getStoreOrders"
       consumes:
       - "application/json"
       produces:
@@ -55,7 +55,7 @@ paths:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/LoadStoreOrdersResult"
+            $ref: "#/definitions/GetStoreOrdersResult"
     post:
       summary: ""
       description: ""
@@ -80,11 +80,46 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/CreateOrderResult"
+  /orders:
+    get:
+      summary: ""
+      description: ""
+      operationId: "getOwnOrders"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/GetOwnOrdersResult"
+  /order/{orderId}:
+    post:
+      summary: ""
+      description: ""
+      operationId: "bringOrder"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "orderId"
+        description: ""
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BringOrderResult"
   /products/{storeId}:
     get:
       summary: ""
       description: ""
-      operationId: "loadProductsForStore"
+      operationId: "getProductsForStore"
       consumes:
       - "application/json"
       produces:
@@ -100,7 +135,7 @@ paths:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/LoadProductsForStoreResult"
+            $ref: "#/definitions/GetProductsForStoreResult"
 definitions:
   SearchStoresResult:
     type: "object"
@@ -119,7 +154,7 @@ definitions:
         type: "string"
       address:
         type: "string"
-  LoadStoreOrdersResult:
+  GetStoreOrdersResult:
     type: "object"
     properties:
       orders:
@@ -134,10 +169,39 @@ definitions:
         format: "int32"
       address:
         type: "string"
+        description: "Shortend address"
       pickupcode:
         type: "string"
         description: "Code needed to pick of the order. Only filled when order is marked for pickup."
-  LoadProductsForStoreResult:
+  GetOwnOrdersResult:
+    type: "object"
+    properties:
+      orders:
+        type: "array"
+        items: 
+          $ref: "#/definitions/OwnOrder"
+  OwnOrder:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      storeId:
+        type: "integer"
+        format: "int32"
+      startDate:
+        type: "string"
+      startTime:
+        type: "string"
+      endDate:
+        type: "string"
+      endTime:
+        type: "string"
+      orderItems:
+        type: "array"
+        items: 
+          $ref: "#/definitions/OrderItem"
+  GetProductsForStoreResult:
     type: "object"
     properties:
       products:
@@ -157,6 +221,14 @@ definitions:
   CreateOrderRequest:
     type: "object"
     properties:
+      startDate:
+        type: "string"
+      startTime:
+        type: "string"
+      endDate:
+        type: "string"
+      endTime:
+        type: "string"
       orderItems:
         type: "array"
         items: 
@@ -176,3 +248,15 @@ definitions:
       orderId:
         type: "integer"
         format: "int32"
+  BringOrderResult:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      address:
+        type: "string"
+        description: "Complete address"
+      pickupcode:
+        type: "string"
+        description: "Code needed to pick of the order. Only filled when order is marked for pickup."

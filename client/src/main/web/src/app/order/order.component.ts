@@ -3,7 +3,7 @@ import { Product } from 'src/api/model/product';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { loadProductsForStore, createOrder } from './order.actions';
+import { getProductsForStore, createOrder } from './order.actions';
 import { AppState } from '../app.state';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit {
         this.orderItems[index] = 0;
       });
     });
-    this.store.dispatch(loadProductsForStore({id: this.id}));
+    this.store.dispatch(getProductsForStore({id: this.id}));
   }
 
   order(): void {

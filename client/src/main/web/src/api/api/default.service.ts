@@ -18,10 +18,12 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs/Observable';
 
+import { BringOrderResult } from '../model/bringOrderResult';
 import { CreateOrderRequest } from '../model/createOrderRequest';
 import { CreateOrderResult } from '../model/createOrderResult';
-import { LoadProductsForStoreResult } from '../model/loadProductsForStoreResult';
-import { LoadStoreOrdersResult } from '../model/loadStoreOrdersResult';
+import { GetOwnOrdersResult } from '../model/getOwnOrdersResult';
+import { GetProductsForStoreResult } from '../model/getProductsForStoreResult';
+import { GetStoreOrdersResult } from '../model/getStoreOrdersResult';
 import { SearchStoresResult } from '../model/searchStoresResult';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -59,6 +61,49 @@ export class DefaultService {
         return false;
     }
 
+
+    /**
+     * 
+     * 
+     * @param orderId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public bringOrder(orderId: number, observe?: 'body', reportProgress?: boolean): Observable<BringOrderResult>;
+    public bringOrder(orderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BringOrderResult>>;
+    public bringOrder(orderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BringOrderResult>>;
+    public bringOrder(orderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling bringOrder.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.post<BringOrderResult>(`${this.basePath}/order/${encodeURIComponent(String(orderId))}`,
+            null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * 
@@ -112,18 +157,13 @@ export class DefaultService {
     /**
      * 
      * 
-     * @param storeId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loadOrders(storeId: number, observe?: 'body', reportProgress?: boolean): Observable<LoadStoreOrdersResult>;
-    public loadOrders(storeId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LoadStoreOrdersResult>>;
-    public loadOrders(storeId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LoadStoreOrdersResult>>;
-    public loadOrders(storeId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling loadOrders.');
-        }
+    public getOwnOrders(observe?: 'body', reportProgress?: boolean): Observable<GetOwnOrdersResult>;
+    public getOwnOrders(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOwnOrdersResult>>;
+    public getOwnOrders(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOwnOrdersResult>>;
+    public getOwnOrders(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -141,7 +181,7 @@ export class DefaultService {
             'application/json'
         ];
 
-        return this.httpClient.get<LoadStoreOrdersResult>(`${this.basePath}/orders/${encodeURIComponent(String(storeId))}`,
+        return this.httpClient.get<GetOwnOrdersResult>(`${this.basePath}/orders`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -158,13 +198,13 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loadProductsForStore(storeId: number, observe?: 'body', reportProgress?: boolean): Observable<LoadProductsForStoreResult>;
-    public loadProductsForStore(storeId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LoadProductsForStoreResult>>;
-    public loadProductsForStore(storeId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LoadProductsForStoreResult>>;
-    public loadProductsForStore(storeId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getProductsForStore(storeId: number, observe?: 'body', reportProgress?: boolean): Observable<GetProductsForStoreResult>;
+    public getProductsForStore(storeId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetProductsForStoreResult>>;
+    public getProductsForStore(storeId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetProductsForStoreResult>>;
+    public getProductsForStore(storeId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (storeId === null || storeId === undefined) {
-            throw new Error('Required parameter storeId was null or undefined when calling loadProductsForStore.');
+            throw new Error('Required parameter storeId was null or undefined when calling getProductsForStore.');
         }
 
         let headers = this.defaultHeaders;
@@ -183,7 +223,49 @@ export class DefaultService {
             'application/json'
         ];
 
-        return this.httpClient.get<LoadProductsForStoreResult>(`${this.basePath}/products/${encodeURIComponent(String(storeId))}`,
+        return this.httpClient.get<GetProductsForStoreResult>(`${this.basePath}/products/${encodeURIComponent(String(storeId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param storeId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getStoreOrders(storeId: number, observe?: 'body', reportProgress?: boolean): Observable<GetStoreOrdersResult>;
+    public getStoreOrders(storeId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetStoreOrdersResult>>;
+    public getStoreOrders(storeId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetStoreOrdersResult>>;
+    public getStoreOrders(storeId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (storeId === null || storeId === undefined) {
+            throw new Error('Required parameter storeId was null or undefined when calling getStoreOrders.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<GetStoreOrdersResult>(`${this.basePath}/orders/${encodeURIComponent(String(storeId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

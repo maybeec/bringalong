@@ -1,27 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BringingComponent } from './bringing.component';
+import { SelectStoreComponent } from './select-store.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { bringingReducer } from './bringing.reducer';
+import { selectStoreReducer } from './select-store.reducer';
 
-describe('BringingComponent', () => {
-  let component: BringingComponent;
-  let fixture: ComponentFixture<BringingComponent>;
+describe('SelectStoreComponent', () => {
+  let component: SelectStoreComponent;
+  let fixture: ComponentFixture<SelectStoreComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BringingComponent ],
+      declarations: [ SelectStoreComponent ],
       imports: [
         FormsModule,
-        StoreModule.forRoot({ bringing: bringingReducer })
+        StoreModule.forRoot({ selectStore: selectStoreReducer })
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BringingComponent);
+    fixture = TestBed.createComponent(SelectStoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,16 +9,15 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { OrderItem } from './orderItem';
 
 
-export interface StoreOrder { 
+export interface OwnOrder { 
     id?: number;
-    /**
-     * Shortend address
-     */
-    address?: string;
-    /**
-     * Code needed to pick of the order. Only filled when order is marked for pickup.
-     */
-    pickupcode?: string;
+    storeId?: number;
+    startDate?: string;
+    startTime?: string;
+    endDate?: string;
+    endTime?: string;
+    orderItems?: Array<OrderItem>;
 }

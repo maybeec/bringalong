@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService, LoadProductsForStoreResult } from 'src/api';
-import { loadProductsForStore, loadProductsForStoreSuccess, loadProductsForStoreError, createOrderSuccess, createOrderError, createOrder } from './order.actions';
+import { DefaultService, GetProductsForStoreResult } from 'src/api';
+import { getProductsForStore, getProductsForStoreSuccess, getProductsForStoreError, createOrderSuccess, createOrderError, createOrder } from './order.actions';
 import { CreateOrderResult } from 'src/api/model/createOrderResult';
 
 
@@ -12,12 +12,12 @@ export class OrderEffects {
 
     loadProductsForStore$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(loadProductsForStore),
+            ofType(getProductsForStore),
             mergeMap(
-                (payload) => (this.service.loadProductsForStore(payload.id, 'body') as Observable<LoadProductsForStoreResult>)
+                (payload) => (this.service.getProductsForStore(payload.id, 'body') as Observable<GetProductsForStoreResult>)
                 .pipe(
-                    map(result => loadProductsForStoreSuccess(result)),
-                    catchError(() => of(loadProductsForStoreError()))
+                    map(result => getProductsForStoreSuccess(result)),
+                    catchError(() => of(getProductsForStoreError()))
                 )
             )
         )
