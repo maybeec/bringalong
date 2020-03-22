@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { StoreOrder } from './storeOrder';
 
 
-export interface Store { 
-    id?: number;
-    name?: string;
-    address?: string;
+export interface LoadStoreOrdersResult { 
+    orders?: Array<StoreOrder>;
 }

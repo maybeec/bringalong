@@ -2,7 +2,7 @@
 PLZ: <input id="plz" name="plz" [(ngModel)]="plz"/><button >Suchen</button>
 </form>
 <div>
-    <div *ngFor="let store of (stores$ | async)">
+    <div *ngFor="let store of (stores$ | async)"  routerLink="/bringing/{{store.id}}">
         <div>{{store.name}}</div>
         <div>{{store.address}}</div>
     </div>

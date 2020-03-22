@@ -15,6 +15,9 @@ import { ApiModule, Configuration } from 'src/api';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { ModeComponent } from './mode/mode.component';
+import { StoreOrdersComponent } from './store-orders/store-orders.component';
+import { storeOrdersReducer } from './store-orders/store-orders.reducer';
+import { StoreOrdersEffects } from './store-orders/store-orders.effects';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration();
@@ -22,14 +25,16 @@ export function apiConfigFactory(): Configuration {
 
 const routes: Routes = [
   { path: '', component: ModeComponent },
-  { path: 'bringing', component: BringingComponent }
+  { path: 'bringing', component: BringingComponent },
+  { path: 'bringing/:id', component: StoreOrdersComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     BringingComponent,
-    ModeComponent
+    ModeComponent,
+    StoreOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +43,12 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     ApiModule.forRoot(apiConfigFactory),
-    StoreModule.forRoot({ bringing: bringingReducer }),
+    StoreModule.forRoot({ bringing: bringingReducer, storeOrders: storeOrdersReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([BringingEffects])
+    EffectsModule.forRoot([BringingEffects, StoreOrdersEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],

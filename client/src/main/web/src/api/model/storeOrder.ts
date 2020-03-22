@@ -11,8 +11,7 @@
  */
 
 
-export interface Store { 
+export interface StoreOrder { 
     id?: number;
-    name?: string;
     address?: string;
 }
