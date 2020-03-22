@@ -13,20 +13,29 @@ import { BringingEffects } from './bringing/bringing.effects';
 import { environment } from 'src/environments/environment';
 import { ApiModule, Configuration } from 'src/api';
 import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+import { ModeComponent } from './mode/mode.component';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration();
 }
 
+const routes: Routes = [
+  { path: '', component: ModeComponent },
+  { path: 'bringing', component: BringingComponent }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
-    BringingComponent
+    BringingComponent,
+    ModeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    RouterModule.forRoot(routes),
     HttpClientModule,
     ApiModule.forRoot(apiConfigFactory),
     StoreModule.forRoot({ bringing: bringingReducer }),
@@ -37,6 +46,7 @@ export function apiConfigFactory(): Configuration {
     EffectsModule.forRoot([BringingEffects])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }
