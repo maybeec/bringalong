@@ -60,7 +60,7 @@ paths:
     get:
       summary: ""
       description: ""
-      operationId: "getProductsForStore"
+      operationId: "loadProductsForStore"
       consumes:
       - "application/json"
       produces:
@@ -76,7 +76,7 @@ paths:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/GetProductsForStoreResult"
+            $ref: "#/definitions/LoadProductsForStoreResult"
 definitions:
   SearchStoresResult:
     type: "object"
@@ -113,7 +113,7 @@ definitions:
       pickupcode:
         type: "string"
         description: "Code needed to pick of the order. Only filled when order is marked for pickup."
-  GetProductsForStoreResult:
+  LoadProductsForStoreResult:
     type: "object"
     properties:
       products:

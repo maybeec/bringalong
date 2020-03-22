@@ -12,6 +12,6 @@
 import { Product } from './product';
 
 
-export interface GetProductsForStoreResult { 
+export interface LoadProductsForStoreResult { 
     products?: Array<Product>;
 }

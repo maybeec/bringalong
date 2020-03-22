@@ -1,4 +1,4 @@
-export * from './getProductsForStoreResult';
+export * from './loadProductsForStoreResult';
 export * from './loadStoreOrdersResult';
 export * from './product';
 export * from './searchStoresResult';

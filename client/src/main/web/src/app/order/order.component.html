@@ -1,0 +1,8 @@
+<div>
+    <form (ngSubmit)="order()">
+        <div *ngFor="let product of (products$ | async)">
+            <div>{{product.name}}</div>
+            <div>{{product.price}}</div>
+        </div>
+    </form>
+</div>

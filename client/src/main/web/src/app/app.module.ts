@@ -18,6 +18,7 @@ import { ModeComponent } from './mode/mode.component';
 import { StoreOrdersComponent } from './store-orders/store-orders.component';
 import { storeOrdersReducer } from './store-orders/store-orders.reducer';
 import { StoreOrdersEffects } from './store-orders/store-orders.effects';
+import { OrderComponent } from './order/order.component';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration();
@@ -25,8 +26,10 @@ export function apiConfigFactory(): Configuration {
 
 const routes: Routes = [
   { path: '', component: ModeComponent },
-  { path: 'bringing', component: SelectStoreComponent },
-  { path: 'bringing/:id', component: StoreOrdersComponent }
+  { path: 'bring', component: SelectStoreComponent },
+  { path: 'bring/:id', component: StoreOrdersComponent },
+  { path: 'order', component: SelectStoreComponent },
+  { path: 'order/:id', component: OrderComponent },
 ];
 
 @NgModule({
@@ -34,7 +37,8 @@ const routes: Routes = [
     AppComponent,
     SelectStoreComponent,
     ModeComponent,
-    StoreOrdersComponent
+    StoreOrdersComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
