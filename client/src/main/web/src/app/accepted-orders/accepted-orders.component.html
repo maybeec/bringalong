@@ -1,0 +1,6 @@
+<div>
+    <div *ngFor="let order of (orders$ | async)" routerLink="/acceptedOrders/order.id)">
+        <div>{{order.name}}</div>
+        <div>{{order.address}}</div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<nav>
+    <a appHideIfNotLoggedIn routerLink="/myOrders/new">Neue Bestellung</a>
+</nav>
+<div>
+    <div *ngFor="let order of (orders$ | async)" routerLink="/orders/order.id)">
+        <div>{{order.name}}</div>
+        <div>{{order.address}}</div>
+    </div>
+</div>

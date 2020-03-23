@@ -1,14 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { GetProductsForStoreResult } from 'src/api';
-import { CreateOrderRequest } from 'src/api/model/createOrderRequest';
-import { CreateOrderResult } from 'src/api/model/createOrderResult';
+import { GetStoreOrdersResult, BringOrderResult } from 'src/api';
 
-export const getProductsForStore = createAction('[Order Component] getProductsForStore', props<{id: number }>());
-export const getProductsForStoreSuccess = createAction('[Order Component] getProductsForStore Success',
-                                                        props<GetProductsForStoreResult>());
-export const getProductsForStoreError = createAction('[Order Component] getProductsForStore Error');
+export const getOrder = createAction('[Order Component] getOrder', props<{id: number}>());
+export const getOrderSuccess = createAction('[Order Component] getOrder Success', props<any>()); // TODO:
+export const getOrderError = createAction('[Order Component] getOrder Error');
 
-export const createOrder = createAction('[Order Component] createOrder', props<{storeId: number, request: CreateOrderRequest }>());
-export const createOrderSuccess = createAction('[Order Component] createOrder Success', props<CreateOrderResult>());
-export const createOrderError = createAction('[Order Component] createOrder Error');
-
+export const bringOrder = createAction('[Order Component] bringOrder', props<{id: number }>());
+export const bringOrderSuccess = createAction('[Order Component] bringOrder Success', props<any>()); // TODO:
+export const bringOrderError = createAction('[Order Component] bringOrder Error');

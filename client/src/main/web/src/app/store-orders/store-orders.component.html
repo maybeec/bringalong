@@ -1,7 +1,0 @@
-<div>
-    <div *ngFor="let order of (orders$ | async)" (click)="bring(order.id)">
-        <div>{{order.name}}</div>
-        <div>{{order.address}}</div>
-        <div>{{order.pickupcode}}</div>
-    </div>
-</div>

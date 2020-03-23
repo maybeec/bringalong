@@ -1,8 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './app.state';
-import { createOrderSuccess, createOrderError, getProductsForStoreError } from './order/order.actions';
-import { getOrdersError, bringOrderError } from './store-orders/store-orders.actions';
-import { searchForPlzError } from './select-store/select-store.actions';
+import { loggedOut, getUserSuccess, getUserError } from './app.actions';
 
 const genericErrorMessage = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
 function setGenericErrorMessage(state) {
@@ -15,11 +13,33 @@ function setGenericErrorMessage(state) {
 }
 
 const appReducerCreator = createReducer(initialState,
-    on(createOrderError, setGenericErrorMessage),
-    on(getOrdersError, setGenericErrorMessage),
-    on(getProductsForStoreError, setGenericErrorMessage),
-    on(searchForPlzError, setGenericErrorMessage),
-    on(bringOrderError, setGenericErrorMessage)
+    on(loggedOut, state => {
+        return {
+            ... state,
+            appState: {
+                ... state.appState,
+                loggedIn: false
+            }
+        };
+    }),
+    on(getUserSuccess, (state, payload) => {
+        return {
+            ... state,
+            appState: {
+                ... state.appState,
+                loggedIn: true
+            } // TODO: User speichern
+        };
+    }),
+    on(getUserError, (state) => {
+        return {
+            ... state,
+            appState: {
+                ... state.appState,
+                loggedIn: false
+            }
+        };
+    })
 );
 
 export function appReducer(state, action) {

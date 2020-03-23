@@ -3,37 +3,37 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { DefaultService, GetStoreOrdersResult, BringOrderResult } from 'src/api';
-import { AppState } from '../app.state';
-import { Store } from '@ngrx/store';
-import { bringOrder, getOrder, getOrderError, bringOrderSuccess, bringOrderError, getOrderSuccess } from './order.actions';
+import { getOrderForEdit, getOrderForEditSuccess, getOrderForEditError,
+     deleteOrderSuccess, deleteOrderError, deleteOrder } from './edit-order.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
-export class OrderEffects {
+export class EditOrderEffects {
 
-    getOrder$ = createEffect(() =>
+    getOrderForEdit$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(getOrder),
+            ofType(getOrderForEdit),
             mergeMap(
                 (payload) => (this.service.getStoreOrders(1, 'body') as Observable<GetStoreOrdersResult>) // TODO:
                 .pipe(
-                    map(result => getOrderSuccess(result)),
-                    catchError(() => of(getOrderError()))
+                    map(result => getOrderForEditSuccess(result)),
+                    catchError(() => of(getOrderForEditError()))
                 )
             )
         )
     );
 
-    bringOrder$ = createEffect(() =>
+    deleteOrder$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(bringOrder),
+            ofType(deleteOrder),
             mergeMap(
                 (payload) => (this.service.bringOrder(payload.id, 'body') as Observable<BringOrderResult>) // TODO:
                 .pipe(
                     map(result => {
-                            this.store.dispatch(getOrder({id: result.id}));
-                            return bringOrderSuccess(result);
+                            this.router.navigate(['/myOrders']);
+                            return deleteOrderSuccess(result);
                         }),
-                    catchError(() => of(bringOrderError()))
+                    catchError(() => of(deleteOrderError()))
                 )
             )
         )
@@ -42,6 +42,6 @@ export class OrderEffects {
     constructor(
         private actions$: Actions,
         private service: DefaultService,
-        private store: Store<AppState>
+        private router: Router
     ) {}
 }

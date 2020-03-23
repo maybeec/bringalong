@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.state';
 import { Observable } from 'rxjs';
+import { getUser } from './app.actions';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit  {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.message$ = this.store.select('app', 'uiState', 'message');
+    this.message$ = this.store.select(store => store.app.uiState.message);
+    this.store.dispatch(getUser());
   }
 }

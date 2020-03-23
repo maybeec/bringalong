@@ -3,19 +3,20 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { DefaultService, GetStoreOrdersResult, BringOrderResult } from 'src/api';
-import { getOrders, getOrdersSuccess, getOrdersError, bringOrder, bringOrderSuccess, bringOrderError } from './store-orders.actions';
+import { getOrders, getOrdersSuccess, getOrdersError,
+     getOrdersByLatLongError, getOrdersByLatLongSuccess, getOrdersByLatLong } from './orders.actions';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 
 
 @Injectable()
-export class StoreOrdersEffects {
+export class OrdersEffects {
 
-    loadOrders$ = createEffect(() =>
+    getOrders$ = createEffect(() =>
         this.actions$.pipe(
             ofType(getOrders),
             mergeMap(
-                (payload) => (this.service.getStoreOrders(payload.id, 'body') as Observable<GetStoreOrdersResult>)
+                (payload) => (this.service.getStoreOrders(1, 'body') as Observable<GetStoreOrdersResult>) // TODO:
                 .pipe(
                     map(result => getOrdersSuccess(result)),
                     catchError(() => of(getOrdersError()))
@@ -24,22 +25,19 @@ export class StoreOrdersEffects {
         )
     );
 
-    bringOrder$ = createEffect(() =>
+    getOrdersByLatLong$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(bringOrder),
+            ofType(getOrdersByLatLong),
             mergeMap(
-                (payload) => (this.service.bringOrder(payload.id, 'body') as Observable<BringOrderResult>)
+                (payload) => (this.service.getStoreOrders(1, 'body') as Observable<GetStoreOrdersResult>) // TODO:
                 .pipe(
-                    map(result =>
-                        {
-                            this.store.dispatch(getOrders({id: result.storeId }));
-                            return bringOrderSuccess(result);
-                        }),
-                    catchError(() => of(bringOrderError()))
+                    map(result => getOrdersByLatLongSuccess(result)),
+                    catchError(() => of(getOrdersByLatLongError()))
                 )
             )
         )
     );
+
 
     constructor(
         private actions$: Actions,

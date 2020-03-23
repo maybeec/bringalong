@@ -1,14 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { getProductsForStoreSuccess } from './order.actions';
 import { initialState } from './order.state';
+import { getOrderSuccess } from './order.actions';
 
 
 const orderReducerCreator = createReducer(initialState,
-    on(getProductsForStoreSuccess, (state, payload) => {
+    on(getOrderSuccess, (state, payload) => {
         return { ...state,
             appState: {
                 ...state.appState,
-                products: payload.products
+                order: payload.order // TODO: payload übernehmen (auch state anpassen)
             }
         };
     })

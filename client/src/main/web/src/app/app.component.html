@@ -1,2 +1,6 @@
 <div>{{message$|async}}</div>
+<nav>
+    <a routerLink="/">Bestellungen</a>
+    <a appHideIfNotLoggedIn routerLink="/myOrders">Meine Bestellungen</a>
+</nav>
 <router-outlet></router-outlet>

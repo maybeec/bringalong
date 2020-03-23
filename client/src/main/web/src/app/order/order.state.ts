@@ -1,7 +1,5 @@
-import { Product } from 'src/api/model/product';
-
 export interface OrderAppState {
-    products: Product[];
+    order: any; // TODO: neuen Datentyp
 }
 
 export interface OrderState {
@@ -10,6 +8,6 @@ export interface OrderState {
 
 export const initialState: OrderState = {
     appState: {
-        products: []
+        order: {}
     }
 };
