@@ -1,11 +1,15 @@
 package io.github.maybeec.bringalong.usermanagement.dataaccess.api;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import io.github.maybeec.bringalong.general.dataaccess.api.ApplicationPersistenceEntity;
 import io.github.maybeec.bringalong.usermanagement.common.api.PaymentOption;
 import io.github.maybeec.bringalong.usermanagement.common.api.PaymentType;
 
+@Entity(name = "PaymentOption")
 public class PaymentOptionEntity extends ApplicationPersistenceEntity implements PaymentOption {
 
   private PaymentType type;
@@ -19,6 +23,7 @@ public class PaymentOptionEntity extends ApplicationPersistenceEntity implements
    */
   @Override
   @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
   public PaymentType getType() {
 
     return this.type;

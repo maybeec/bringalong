@@ -1,8 +1,8 @@
-package io.github.maybeec.bringalong.masterdata.logic.api.to;
+package io.github.maybeec.bringalong.general.logic.api.to;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
-import io.github.maybeec.bringalong.masterdata.common.api.Address;
+import io.github.maybeec.bringalong.general.common.api.Address;
 
 /**
  * Entity transport object of Address
@@ -62,7 +62,7 @@ public class AddressEto extends AbstractEto implements Address {
   }
 
   @Override
-  public void setAdditionalHints(String additionalHints) {
+  public void setAdditionalInformation(String additionalHints) {
 
     this.additionalHints = additionalHints;
   }

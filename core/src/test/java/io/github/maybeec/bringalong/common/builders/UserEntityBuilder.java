@@ -118,6 +118,10 @@ public class UserEntityBuilder {
    */
   private void fillMandatoryFields() {
 
+    login("DefaultString");
+    forename("DefaultString");
+    surname("DefaultString");
+    // TODO possiblePaymentOptions(...); //set Default java.util.List
   }
 
   /**
@@ -147,6 +151,17 @@ public class UserEntityBuilder {
     }
 
     return userentityList;
+  }
+
+  /**
+   * @param forename the forename to add.
+   * @return the builder for fluent population of fields.
+   */
+  public UserEntityBuilder forename(final String forename) {
+
+    this.parameterToBeApplied.add(target -> target.setForename(forename));
+
+    return this;
   }
 
 }

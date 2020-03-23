@@ -1,7 +1,6 @@
 package io.github.maybeec.bringalong.marketplace.logic.api.to;
 
 import java.util.Calendar;
-import java.util.Currency;
 
 import com.devonfw.module.basic.common.api.query.StringSearchConfigTo;
 
@@ -23,7 +22,13 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
 
   private Integer estimatedAmount;
 
-  private Currency currency;
+  private String currency;
+
+  private Double lon;
+
+  private Double lat;
+
+  private Integer range;
 
   private Long acceptedByUser;
 
@@ -33,10 +38,11 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
 
   private StringSearchConfigTo dropHintOption;
 
+  private StringSearchConfigTo currencyOption;
+
   /**
    * @return itemId
    */
-
   public String getItem() {
 
     return item;
@@ -45,7 +51,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param item setter for item attribute
    */
-
   public void setItem(String item) {
 
     this.item = item;
@@ -54,7 +59,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @return dropHintId
    */
-
   public String getDropHint() {
 
     return dropHint;
@@ -63,7 +67,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param dropHint setter for dropHint attribute
    */
-
   public void setDropHint(String dropHint) {
 
     this.dropHint = dropHint;
@@ -72,7 +75,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @return deadlineId
    */
-
   public Calendar getDeadline() {
 
     return deadline;
@@ -81,7 +83,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param deadline setter for deadline attribute
    */
-
   public void setDeadline(Calendar deadline) {
 
     this.deadline = deadline;
@@ -90,7 +91,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @return estimatedAmountId
    */
-
   public Integer getEstimatedAmount() {
 
     return estimatedAmount;
@@ -99,7 +99,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param estimatedAmount setter for estimatedAmount attribute
    */
-
   public void setEstimatedAmount(Integer estimatedAmount) {
 
     this.estimatedAmount = estimatedAmount;
@@ -108,8 +107,7 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @return currencyId
    */
-
-  public Currency getCurrency() {
+  public String getCurrency() {
 
     return currency;
   }
@@ -117,16 +115,62 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param currency setter for currency attribute
    */
-
-  public void setCurrency(Currency currency) {
+  public void setCurrency(String currency) {
 
     this.currency = currency;
   }
 
   /**
+   * @return lon
+   */
+  public Double getLon() {
+
+    return this.lon;
+  }
+
+  /**
+   * @param lon new value of {@link #getlon}.
+   */
+  public void setLon(Double lon) {
+
+    this.lon = lon;
+  }
+
+  /**
+   * @return lat
+   */
+  public Double getLat() {
+
+    return this.lat;
+  }
+
+  /**
+   * @param lat new value of {@link #getlat}.
+   */
+  public void setLat(Double lat) {
+
+    this.lat = lat;
+  }
+
+  /**
+   * @return range
+   */
+  public Integer getRange() {
+
+    return this.range;
+  }
+
+  /**
+   * @param range new value of {@link #getrange}.
+   */
+  public void setRange(Integer range) {
+
+    this.range = range;
+  }
+
+  /**
    * @return acceptedByUserId
    */
-
   public Long getAcceptedByUser() {
 
     return acceptedByUser;
@@ -135,7 +179,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param acceptedByUser setter for acceptedByUser attribute
    */
-
   public void setAcceptedByUser(Long acceptedByUser) {
 
     this.acceptedByUser = acceptedByUser;
@@ -144,7 +187,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @return userIdId
    */
-
   public Long getUserId() {
 
     return userId;
@@ -153,7 +195,6 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   /**
    * @param userId setter for userId attribute
    */
-
   public void setUserId(Long userId) {
 
     this.userId = userId;
@@ -189,6 +230,22 @@ public class BringDemandSearchCriteriaTo extends AbstractSearchCriteriaTo {
   public void setDropHintOption(StringSearchConfigTo dropHintOption) {
 
     this.dropHintOption = dropHintOption;
+  }
+
+  /**
+   * @return the {@link StringSearchConfigTo} used to search for {@link #getCurrency() currency}.
+   */
+  public StringSearchConfigTo getCurrencyOption() {
+
+    return this.currencyOption;
+  }
+
+  /**
+   * @param currencyOption new value of {@link #getCurrencyOption()}.
+   */
+  public void setCurrencyOption(StringSearchConfigTo currencyOption) {
+
+    this.currencyOption = currencyOption;
   }
 
 }

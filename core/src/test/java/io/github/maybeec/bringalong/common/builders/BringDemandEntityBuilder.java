@@ -1,7 +1,6 @@
 package io.github.maybeec.bringalong.common.builders;
 
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -75,7 +74,7 @@ public class BringDemandEntityBuilder {
    * @param currency the currency to add.
    * @return the builder for fluent population of fields.
    */
-  public BringDemandEntityBuilder currency(final Currency currency) {
+  public BringDemandEntityBuilder currency(final String currency) {
 
     this.parameterToBeApplied.add(target -> target.setCurrency(currency));
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.devonfw.module.basic.common.api.to.AbstractCto;
 
-import io.github.maybeec.bringalong.masterdata.logic.api.to.AddressEto;
+import io.github.maybeec.bringalong.general.logic.api.to.AddressEto;
 
 /**
  * Composite transport object of User

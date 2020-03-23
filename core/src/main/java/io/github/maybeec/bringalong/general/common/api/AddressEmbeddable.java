@@ -1,8 +1,7 @@
 package io.github.maybeec.bringalong.general.common.api;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
-import io.github.maybeec.bringalong.masterdata.common.api.Address;
 
 @Embeddable
 public class AddressEmbeddable implements Address {
@@ -15,14 +14,15 @@ public class AddressEmbeddable implements Address {
 
   private String additionalInformation;
 
-  private Long lat;
+  private Double lat;
 
-  private Long lon;
+  private Double lon;
 
   /**
    * @return plz
    */
   @Override
+  @Column(nullable = false)
   public String getPlz() {
 
     return this.plz;
@@ -41,6 +41,7 @@ public class AddressEmbeddable implements Address {
    * @return streetAndNumber
    */
   @Override
+  @Column(nullable = false)
   public String getStreetAndNumber() {
 
     return this.streetAndNumber;
@@ -59,6 +60,7 @@ public class AddressEmbeddable implements Address {
    * @return city
    */
   @Override
+  @Column(nullable = false)
   public String getCity() {
 
     return this.city;
@@ -86,7 +88,7 @@ public class AddressEmbeddable implements Address {
    * @param additionalInformation new value of {@link #getAdditionalInformation}.
    */
   @Override
-  public void setAdditionalHints(String additionalInformation) {
+  public void setAdditionalInformation(String additionalInformation) {
 
     this.additionalInformation = additionalInformation;
   }
@@ -94,7 +96,8 @@ public class AddressEmbeddable implements Address {
   /**
    * @return lat
    */
-  public Long getLat() {
+  @Column(nullable = false)
+  public Double getLat() {
 
     return this.lat;
   }
@@ -102,7 +105,7 @@ public class AddressEmbeddable implements Address {
   /**
    * @param lat new value of {@link #getLat}.
    */
-  public void setLat(Long lat) {
+  public void setLat(Double lat) {
 
     this.lat = lat;
   }
@@ -110,7 +113,8 @@ public class AddressEmbeddable implements Address {
   /**
    * @return lon
    */
-  public Long getLon() {
+  @Column(nullable = false)
+  public Double getLon() {
 
     return this.lon;
   }
@@ -118,7 +122,7 @@ public class AddressEmbeddable implements Address {
   /**
    * @param lon new value of {@link #getLon}.
    */
-  public void setLon(Long lon) {
+  public void setLon(Double lon) {
 
     this.lon = lon;
   }

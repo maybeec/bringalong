@@ -8,7 +8,7 @@ schemes:
 paths:
   /marketplace/v1/bringdemand:
     post:
-      operationId: "MarketplaceRestService_saveBringDemand_post"
+      operationId: "saveBringDemand"
       consumes:
       - "application/json"
       produces:
@@ -21,7 +21,7 @@ paths:
             $ref: "#/definitions/BringDemandEto"
   /marketplace/v1/bringdemand/search:
     post:
-      operationId: "MarketplaceRestService_findBringDemands_post"
+      operationId: "findBringDemands"
       consumes:
       - "application/json"
       produces:
@@ -34,7 +34,7 @@ paths:
             $ref: "#/definitions/PageBringDemandEto"
   /marketplace/v1/bringdemand/{id}:
     get:
-      operationId: "MarketplaceRestService_getBringDemand_get"
+      operationId: "getBringDemand"
       consumes:
       - "application/json"
       produces:
@@ -51,66 +51,7 @@ paths:
           schema:
             $ref: "#/definitions/BringDemandEto"
     delete:
-      operationId: "MarketplaceRestService_deleteBringDemand_delete"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        default:
-          description: "successful operation"
-  /masterdata/v1/store:
-    post:
-      operationId: "MasterdataRestService_saveStore_post"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/StoreEto"
-  /masterdata/v1/store/search:
-    post:
-      operationId: "MasterdataRestService_findStores_post"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/PageStoreEto"
-  /masterdata/v1/store/{id}:
-    get:
-      operationId: "MasterdataRestService_getStore_get"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/StoreEto"
-    delete:
-      operationId: "MasterdataRestService_deleteStore_delete"
+      operationId: "deleteBringDemand"
       consumes:
       - "application/json"
       produces:
@@ -126,7 +67,7 @@ paths:
           description: "successful operation"
   /security/v1/csrftoken:
     get:
-      operationId: "SecurityRestService_getCsrfToken_get"
+      operationId: "getCsrfToken"
       consumes:
       - "application/json"
       produces:
@@ -139,7 +80,7 @@ paths:
             $ref: "#/definitions/CsrfToken"
   /security/v1/currentuser:
     get:
-      operationId: "SecurityRestService_getCurrentUser_get"
+      operationId: "getCurrentUser"
       consumes:
       - "application/json"
       produces:
@@ -152,7 +93,7 @@ paths:
             $ref: "#/definitions/UserProfileTo"
   /usermanagement/v1/user:
     post:
-      operationId: "UsermanagementRestService_saveUser_post"
+      operationId: "saveUser"
       consumes:
       - "application/json"
       produces:
@@ -163,22 +104,9 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/UserEto"
-  /usermanagement/v1/user/cto/search:
-    post:
-      operationId: "UsermanagementRestService_findUserCtos_post"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/PageUserCto"
   /usermanagement/v1/user/cto/{id}:
     get:
-      operationId: "UsermanagementRestService_getUserCto_get"
+      operationId: "getUserCto"
       consumes:
       - "application/json"
       produces:
@@ -194,22 +122,9 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/UserCto"
-  /usermanagement/v1/user/search:
-    post:
-      operationId: "UsermanagementRestService_findUsers_post"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/PageUserEto"
   /usermanagement/v1/user/{id}:
     get:
-      operationId: "UsermanagementRestService_getUser_get"
+      operationId: "getUser"
       consumes:
       - "application/json"
       produces:
@@ -225,22 +140,18 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/UserEto"
-    delete:
-      operationId: "UsermanagementRestService_deleteUser_delete"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        default:
-          description: "successful operation"
 definitions:
+  Address:
+    type: "object"
+    properties:
+      streetAndNumber:
+        type: "string"
+      plz:
+        type: "string"
+      city:
+        type: "string"
+      additionalInformation:
+        type: "string"
   AddressEto:
     type: "object"
     properties:
@@ -260,6 +171,10 @@ definitions:
         type: "string"
   BringDemandEto:
     type: "object"
+    required:
+    - "currency"
+    - "item"
+    - "userId"
     properties:
       id:
         type: "integer"
@@ -278,7 +193,7 @@ definitions:
         type: "integer"
         format: "int32"
       currency:
-        $ref: "#/definitions/Currency"
+        type: "string"
       acceptedByUser:
         type: "integer"
         format: "int64"
@@ -293,23 +208,6 @@ definitions:
       parameterName:
         type: "string"
       token:
-        type: "string"
-  Currency:
-    type: "object"
-    properties:
-      currencyCode:
-        type: "string"
-      defaultFractionDigits:
-        type: "integer"
-        format: "int32"
-      numericCode:
-        type: "integer"
-        format: "int32"
-      displayName:
-        type: "string"
-      symbol:
-        type: "string"
-      numericCodeAsString:
         type: "string"
   Page:
     type: "object"
@@ -375,102 +273,6 @@ definitions:
         type: "boolean"
       empty:
         type: "boolean"
-  PageStoreEto:
-    type: "object"
-    properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
-      totalElements:
-        type: "integer"
-        format: "int64"
-      size:
-        type: "integer"
-        format: "int32"
-      content:
-        type: "array"
-        items:
-          $ref: "#/definitions/StoreEto"
-      number:
-        type: "integer"
-        format: "int32"
-      sort:
-        $ref: "#/definitions/Sort"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
-      first:
-        type: "boolean"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
-        type: "boolean"
-      empty:
-        type: "boolean"
-  PageUserCto:
-    type: "object"
-    properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
-      totalElements:
-        type: "integer"
-        format: "int64"
-      size:
-        type: "integer"
-        format: "int32"
-      content:
-        type: "array"
-        items:
-          $ref: "#/definitions/UserCto"
-      number:
-        type: "integer"
-        format: "int32"
-      sort:
-        $ref: "#/definitions/Sort"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
-      first:
-        type: "boolean"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
-        type: "boolean"
-      empty:
-        type: "boolean"
-  PageUserEto:
-    type: "object"
-    properties:
-      totalPages:
-        type: "integer"
-        format: "int32"
-      totalElements:
-        type: "integer"
-        format: "int64"
-      size:
-        type: "integer"
-        format: "int32"
-      content:
-        type: "array"
-        items:
-          $ref: "#/definitions/UserEto"
-      number:
-        type: "integer"
-        format: "int32"
-      sort:
-        $ref: "#/definitions/Sort"
-      numberOfElements:
-        type: "integer"
-        format: "int32"
-      first:
-        type: "boolean"
-      pageable:
-        $ref: "#/definitions/Pageable"
-      last:
-        type: "boolean"
-      empty:
-        type: "boolean"
   Pageable:
     type: "object"
     properties:
@@ -509,25 +311,12 @@ definitions:
   Sort:
     type: "object"
     properties:
-      sorted:
-        type: "boolean"
       unsorted:
+        type: "boolean"
+      sorted:
         type: "boolean"
       empty:
         type: "boolean"
-  StoreEto:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      modificationCounter:
-        type: "integer"
-        format: "int32"
-      name:
-        type: "string"
-      description:
-        type: "string"
   UserCto:
     type: "object"
     properties:
@@ -562,6 +351,8 @@ definitions:
           - "PAYPALME"
       forename:
         type: "string"
+      address:
+        $ref: "#/definitions/Address"
   UserProfileTo:
     type: "object"
     properties:

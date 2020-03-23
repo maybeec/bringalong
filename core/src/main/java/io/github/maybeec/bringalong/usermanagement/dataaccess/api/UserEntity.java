@@ -2,8 +2,11 @@ package io.github.maybeec.bringalong.usermanagement.dataaccess.api;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.NaturalId;
@@ -17,6 +20,7 @@ import io.github.maybeec.bringalong.general.dataaccess.api.ApplicationPersistenc
 import io.github.maybeec.bringalong.usermanagement.common.api.PaymentType;
 import io.github.maybeec.bringalong.usermanagement.common.api.User;
 
+@Entity(name = "User")
 @TypeDef(name = "json", typeClass = JsonStringType.class)
 public class UserEntity extends ApplicationPersistenceEntity implements User {
 
@@ -39,7 +43,7 @@ public class UserEntity extends ApplicationPersistenceEntity implements User {
    * @return login
    */
   @Override
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   public String getLogin() {
 
     return this.login;
@@ -112,7 +116,8 @@ public class UserEntity extends ApplicationPersistenceEntity implements User {
   /**
    * @return acceptedPaymentOptions
    */
-  @OneToMany(mappedBy = "user_id")
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "user_id")
   public List<PaymentOptionEntity> getAcceptedPaymentOptions() {
 
     return this.acceptedPaymentOptions;

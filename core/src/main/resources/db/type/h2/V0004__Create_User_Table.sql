@@ -1,0 +1,15 @@
+CREATE TABLE User (
+  id                  BIGINT NOT NULL AUTO_INCREMENT,
+  modificationCounter INTEGER NOT NULL,
+  login               VARCHAR(255 CHAR) NOT NULL UNIQUE,
+  forename            VARCHAR(255 CHAR) NOT NULL,
+  surname             VARCHAR(255 CHAR) NOT NULL,
+  streetAndNumber     VARCHAR(255 CHAR) NOT NULL,
+  plz                 VARCHAR(6 CHAR) NOT NULL,
+  city                VARCHAR(255 CHAR) NOT NULL,
+  additionalInformation VARCHAR(255 CHAR),
+  possiblePaymentOptions VARCHAR(255 CHAR),
+  lat                 DOUBLE NOT NULL,
+  lon                 DOUBLE NOT NULL,
+  CONSTRAINT PK_User PRIMARY KEY (ID),
+);

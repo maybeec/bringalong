@@ -1,4 +1,4 @@
-package io.github.maybeec.bringalong.masterdata.common.api;
+package io.github.maybeec.bringalong.general.common.api;
 
 public interface Address {
 
@@ -40,6 +40,6 @@ public interface Address {
   /**
    * @param additionalHints setter for additionalHints attribute
    */
-  public void setAdditionalHints(String additionalHints);
+  public void setAdditionalInformation(String additionalHints);
 
 }

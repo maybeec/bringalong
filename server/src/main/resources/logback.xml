@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Configuration file for logback -->
 <configuration>
-  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+<!--   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
       <includeContext>false</includeContext>
       <includeMdcKeyName>correlationId</includeMdcKeyName>
@@ -12,11 +12,15 @@
       </fieldNames>
       <customFields>{"appname":"bringalong"}</customFields>
       <timeZone>UTC</timeZone>
-    </encoder>
-  </appender>
+    </encoder> 
+  </appender>-->
+  
+  <property resource="com/devonfw/logging/logback/application-logging.properties" />
+  <property name="appname" value="bringalong"/>
+  <include resource="com/devonfw/logging/logback/appender-console.xml" />
 
   <root level="DEBUG">
-    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="CONSOLE_APPENDER"/>
   </root>
 
   <!-- Minimize infrastructure debug logs -->

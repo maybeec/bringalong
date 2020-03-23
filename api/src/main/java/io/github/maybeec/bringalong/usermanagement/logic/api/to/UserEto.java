@@ -3,7 +3,10 @@ package io.github.maybeec.bringalong.usermanagement.logic.api.to;
 import java.util.List;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import io.github.maybeec.bringalong.general.common.api.Address;
+import io.github.maybeec.bringalong.general.logic.api.to.AddressEto;
 import io.github.maybeec.bringalong.usermanagement.common.api.PaymentType;
 import io.github.maybeec.bringalong.usermanagement.common.api.User;
 
@@ -21,6 +24,11 @@ public class UserEto extends AbstractEto implements User {
   private String surname;
 
   private List<PaymentType> possiblePaymentOptions;
+
+  private String forename;
+
+  @JsonDeserialize(as = AddressEto.class)
+  private Address address;
 
   @Override
   public String getLogin() {
@@ -127,4 +135,21 @@ public class UserEto extends AbstractEto implements User {
     }
     return true;
   }
+
+  /**
+   * @return addressId
+   */
+  public Address getAddress() {
+
+    return address;
+  }
+
+  /**
+   * @param address setter for address attribute
+   */
+  public void setAddress(Address address) {
+
+    this.address = address;
+  }
+
 }

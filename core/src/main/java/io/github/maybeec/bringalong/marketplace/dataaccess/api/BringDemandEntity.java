@@ -1,11 +1,14 @@
 package io.github.maybeec.bringalong.marketplace.dataaccess.api;
 
 import java.util.Calendar;
-import java.util.Currency;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 import io.github.maybeec.bringalong.general.dataaccess.api.ApplicationPersistenceEntity;
 import io.github.maybeec.bringalong.marketplace.common.api.BringDemand;
 
+@Entity(name = "BringDemand")
 public class BringDemandEntity extends ApplicationPersistenceEntity implements BringDemand {
 
   private String item;
@@ -16,7 +19,7 @@ public class BringDemandEntity extends ApplicationPersistenceEntity implements B
 
   private Integer estimatedAmount;
 
-  private Currency currency;
+  private String currency;
 
   private Long acceptedByUser;
 
@@ -28,6 +31,7 @@ public class BringDemandEntity extends ApplicationPersistenceEntity implements B
    * @return item
    */
   @Override
+  @Column(nullable = false)
   public String getItem() {
 
     return this.item;
@@ -100,7 +104,8 @@ public class BringDemandEntity extends ApplicationPersistenceEntity implements B
    * @return currency
    */
   @Override
-  public Currency getCurrency() {
+  @Column(nullable = false)
+  public String getCurrency() {
 
     return this.currency;
   }
@@ -109,7 +114,7 @@ public class BringDemandEntity extends ApplicationPersistenceEntity implements B
    * @param currency new value of {@link #getCurrency}.
    */
   @Override
-  public void setCurrency(Currency currency) {
+  public void setCurrency(String currency) {
 
     this.currency = currency;
   }
@@ -136,6 +141,7 @@ public class BringDemandEntity extends ApplicationPersistenceEntity implements B
    * @return userId
    */
   @Override
+  @Column(nullable = false, name = "user_id")
   public Long getUserId() {
 
     return this.userId;

@@ -3,7 +3,6 @@ package io.github.maybeec.bringalong.marketplace.dataaccess.api.repo;
 import static com.querydsl.core.alias.Alias.$;
 
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.Iterator;
 
 import org.springframework.data.domain.Page;
@@ -49,7 +48,7 @@ public interface BringDemandRepository extends DefaultRepository<BringDemandEnti
     if (estimatedAmount != null) {
       query.where($(alias.getEstimatedAmount()).eq(estimatedAmount));
     }
-    Currency currency = criteria.getCurrency();
+    String currency = criteria.getCurrency();
     if (currency != null) {
       query.where($(alias.getCurrency()).eq(currency));
     }
@@ -72,7 +71,7 @@ public interface BringDemandRepository extends DefaultRepository<BringDemandEnti
 
   /**
    * Add sorting to the given query on the given alias
-   * 
+   *
    * @param query to add sorting to
    * @param alias to retrieve columns from for sorting
    * @param sort specification of sorting

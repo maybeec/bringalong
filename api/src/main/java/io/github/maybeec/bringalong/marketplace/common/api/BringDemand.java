@@ -1,7 +1,6 @@
 package io.github.maybeec.bringalong.marketplace.common.api;
 
 import java.util.Calendar;
-import java.util.Currency;
 
 import io.github.maybeec.bringalong.general.common.api.ApplicationEntity;
 
@@ -59,13 +58,13 @@ public interface BringDemand extends ApplicationEntity {
    * @return currencyId
    */
 
-  public Currency getCurrency();
+  public String getCurrency();
 
   /**
    * @param currency setter for currency attribute
    */
 
-  public void setCurrency(Currency currency);
+  public void setCurrency(String currency);
 
   /**
    * @return acceptedByUserId

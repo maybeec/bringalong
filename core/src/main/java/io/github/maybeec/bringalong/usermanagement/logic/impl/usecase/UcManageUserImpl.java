@@ -28,15 +28,6 @@ public class UcManageUserImpl extends AbstractUserUc implements UcManageUser {
   private static final Logger LOG = LoggerFactory.getLogger(UcManageUserImpl.class);
 
   @Override
-  public boolean deleteUser(long userId) {
-
-    UserEntity user = getUserRepository().find(userId);
-    getUserRepository().delete(user);
-    LOG.debug("The user with id '{}' has been deleted.", userId);
-    return true;
-  }
-
-  @Override
   public UserEto saveUser(UserEto user) {
 
     Objects.requireNonNull(user, "user");

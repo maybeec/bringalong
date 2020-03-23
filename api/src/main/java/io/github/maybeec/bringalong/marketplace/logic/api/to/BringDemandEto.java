@@ -1,7 +1,8 @@
 package io.github.maybeec.bringalong.marketplace.logic.api.to;
 
 import java.util.Calendar;
-import java.util.Currency;
+
+import javax.validation.constraints.NotNull;
 
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
@@ -22,13 +23,14 @@ public class BringDemandEto extends AbstractEto implements BringDemand {
 
   private Integer estimatedAmount;
 
-  private Currency currency;
+  private String currency;
 
   private Long acceptedByUser;
 
   private Long userId;
 
   @Override
+  @NotNull
   public String getItem() {
 
     return item;
@@ -77,13 +79,14 @@ public class BringDemandEto extends AbstractEto implements BringDemand {
   }
 
   @Override
-  public Currency getCurrency() {
+  @NotNull
+  public String getCurrency() {
 
     return currency;
   }
 
   @Override
-  public void setCurrency(Currency currency) {
+  public void setCurrency(String currency) {
 
     this.currency = currency;
   }
@@ -101,6 +104,7 @@ public class BringDemandEto extends AbstractEto implements BringDemand {
   }
 
   @Override
+  @NotNull
   public Long getUserId() {
 
     return userId;
@@ -192,4 +196,5 @@ public class BringDemandEto extends AbstractEto implements BringDemand {
     }
     return true;
   }
+
 }
