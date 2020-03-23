@@ -15,12 +15,10 @@ public class StoreEto extends AbstractEto implements Store {
 
   private String description;
 
-  private Long addressId;
-
   @Override
   public String getName() {
 
-    return name;
+    return this.name;
   }
 
   @Override
@@ -32,7 +30,7 @@ public class StoreEto extends AbstractEto implements Store {
   @Override
   public String getDescription() {
 
-    return description;
+    return this.description;
   }
 
   @Override
@@ -42,26 +40,12 @@ public class StoreEto extends AbstractEto implements Store {
   }
 
   @Override
-  public Long getAddressId() {
-
-    return addressId;
-  }
-
-  @Override
-  public void setAddressId(Long addressId) {
-
-    this.addressId = addressId;
-  }
-
-  @Override
   public int hashCode() {
 
     final int prime = 31;
     int result = super.hashCode();
     result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
     result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
-
-    result = prime * result + ((this.addressId == null) ? 0 : this.addressId.hashCode());
     return result;
   }
 
@@ -91,14 +75,6 @@ public class StoreEto extends AbstractEto implements Store {
         return false;
       }
     } else if (!this.description.equals(other.description)) {
-      return false;
-    }
-
-    if (this.addressId == null) {
-      if (other.addressId != null) {
-        return false;
-      }
-    } else if (!this.addressId.equals(other.addressId)) {
       return false;
     }
     return true;

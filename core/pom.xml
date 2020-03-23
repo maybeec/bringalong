@@ -23,7 +23,12 @@
 		<dependency>
 			<groupId>javax.money</groupId>
 			<artifactId>money-api</artifactId>
-			<version>1.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vladmihalcea</groupId>
+			<artifactId>hibernate-types-52</artifactId>
+			<version>2.3.4</version>
 		</dependency>
 
 		<!-- Bean-Mapping for conversion from TO to Entity and vice versa -->

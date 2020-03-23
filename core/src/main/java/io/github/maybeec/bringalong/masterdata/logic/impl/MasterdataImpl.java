@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 
 import io.github.maybeec.bringalong.general.logic.base.AbstractComponentFacade;
 import io.github.maybeec.bringalong.masterdata.logic.api.Masterdata;
@@ -16,6 +17,7 @@ import io.github.maybeec.bringalong.masterdata.logic.api.usecase.UcManageStore;
  * Implementation of component interface of masterdata
  */
 @Named
+@Validated
 public class MasterdataImpl extends AbstractComponentFacade implements Masterdata {
 
   @Inject

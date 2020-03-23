@@ -80,13 +80,6 @@ public interface StoreRepository extends DefaultRepository<StoreEntity> {
               query.orderBy($(alias.getDescription()).desc());
             }
             break;
-          case "address":
-            if (next.isAscending()) {
-              query.orderBy($(alias.getAddress().getId()).asc());
-            } else {
-              query.orderBy($(alias.getAddress().getId()).desc());
-            }
-            break;
           default:
             throw new IllegalArgumentException("Sorted by the unknown property '" + next.getProperty() + "'");
         }

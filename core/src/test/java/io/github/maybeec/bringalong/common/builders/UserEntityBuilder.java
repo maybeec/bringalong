@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import javax.persistence.EntityManager;
 
-import io.github.maybeec.bringalong.masterdata.dataaccess.api.AddressEntity;
+import io.github.maybeec.bringalong.general.common.api.AddressEmbeddable;
 import io.github.maybeec.bringalong.usermanagement.common.api.PaymentType;
 import io.github.maybeec.bringalong.usermanagement.dataaccess.api.PaymentOptionEntity;
 import io.github.maybeec.bringalong.usermanagement.dataaccess.api.UserEntity;
@@ -45,7 +45,7 @@ public class UserEntityBuilder {
    */
   public UserEntityBuilder forname(final String forname) {
 
-    this.parameterToBeApplied.add(target -> target.setForname(forname));
+    this.parameterToBeApplied.add(target -> target.setForename(forname));
 
     return this;
   }
@@ -65,7 +65,7 @@ public class UserEntityBuilder {
    * @param address the address to add.
    * @return the builder for fluent population of fields.
    */
-  public UserEntityBuilder address(final AddressEntity address) {
+  public UserEntityBuilder address(final AddressEmbeddable address) {
 
     this.parameterToBeApplied.add(target -> target.setAddress(address));
 

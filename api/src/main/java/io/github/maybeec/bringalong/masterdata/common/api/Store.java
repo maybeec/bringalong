@@ -28,18 +28,4 @@ public interface Store extends ApplicationEntity {
 
   public void setDescription(String description);
 
-  /**
-   * getter for addressId attribute
-   * 
-   * @return addressId
-   */
-
-  public Long getAddressId();
-
-  /**
-   * @param address setter for address attribute
-   */
-
-  public void setAddressId(Long addressId);
-
 }

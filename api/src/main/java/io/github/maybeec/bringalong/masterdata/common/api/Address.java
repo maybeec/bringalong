@@ -1,8 +1,6 @@
 package io.github.maybeec.bringalong.masterdata.common.api;
 
-import io.github.maybeec.bringalong.general.common.api.ApplicationEntity;
-
-public interface Address extends ApplicationEntity {
+public interface Address {
 
   /**
    * @return plzId
@@ -37,7 +35,7 @@ public interface Address extends ApplicationEntity {
   /**
    * @return additionalHintsId
    */
-  public String getAdditionalHints();
+  public String getAdditionalInformation();
 
   /**
    * @param additionalHints setter for additionalHints attribute

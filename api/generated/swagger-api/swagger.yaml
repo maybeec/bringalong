@@ -1,0 +1,569 @@
+---
+swagger: "2.0"
+info:
+  version: "v1"
+  title: "BringAlong Server REST API"
+schemes:
+- "https"
+paths:
+  /marketplace/v1/bringdemand:
+    post:
+      operationId: "MarketplaceRestService_saveBringDemand_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BringDemandEto"
+  /marketplace/v1/bringdemand/search:
+    post:
+      operationId: "MarketplaceRestService_findBringDemands_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageBringDemandEto"
+  /marketplace/v1/bringdemand/{id}:
+    get:
+      operationId: "MarketplaceRestService_getBringDemand_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BringDemandEto"
+    delete:
+      operationId: "MarketplaceRestService_deleteBringDemand_delete"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /masterdata/v1/store:
+    post:
+      operationId: "MasterdataRestService_saveStore_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/StoreEto"
+  /masterdata/v1/store/search:
+    post:
+      operationId: "MasterdataRestService_findStores_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageStoreEto"
+  /masterdata/v1/store/{id}:
+    get:
+      operationId: "MasterdataRestService_getStore_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/StoreEto"
+    delete:
+      operationId: "MasterdataRestService_deleteStore_delete"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /security/v1/csrftoken:
+    get:
+      operationId: "SecurityRestService_getCsrfToken_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/CsrfToken"
+  /security/v1/currentuser:
+    get:
+      operationId: "SecurityRestService_getCurrentUser_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserProfileTo"
+  /usermanagement/v1/user:
+    post:
+      operationId: "UsermanagementRestService_saveUser_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserEto"
+  /usermanagement/v1/user/cto/search:
+    post:
+      operationId: "UsermanagementRestService_findUserCtos_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageUserCto"
+  /usermanagement/v1/user/cto/{id}:
+    get:
+      operationId: "UsermanagementRestService_getUserCto_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserCto"
+  /usermanagement/v1/user/search:
+    post:
+      operationId: "UsermanagementRestService_findUsers_post"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/PageUserEto"
+  /usermanagement/v1/user/{id}:
+    get:
+      operationId: "UsermanagementRestService_getUser_get"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/UserEto"
+    delete:
+      operationId: "UsermanagementRestService_deleteUser_delete"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+definitions:
+  AddressEto:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      streetAndNumber:
+        type: "string"
+      plz:
+        type: "string"
+      city:
+        type: "string"
+      additionalInformation:
+        type: "string"
+  BringDemandEto:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      item:
+        type: "string"
+      dropHint:
+        type: "string"
+      deadline:
+        type: "string"
+        format: "date-time"
+      estimatedAmount:
+        type: "integer"
+        format: "int32"
+      currency:
+        $ref: "#/definitions/Currency"
+      acceptedByUser:
+        type: "integer"
+        format: "int64"
+      userId:
+        type: "integer"
+        format: "int64"
+  CsrfToken:
+    type: "object"
+    properties:
+      headerName:
+        type: "string"
+      parameterName:
+        type: "string"
+      token:
+        type: "string"
+  Currency:
+    type: "object"
+    properties:
+      currencyCode:
+        type: "string"
+      defaultFractionDigits:
+        type: "integer"
+        format: "int32"
+      numericCode:
+        type: "integer"
+        format: "int32"
+      displayName:
+        type: "string"
+      symbol:
+        type: "string"
+      numericCodeAsString:
+        type: "string"
+  Page:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          type: "object"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  PageBringDemandEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/BringDemandEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  PageStoreEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/StoreEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  PageUserCto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/UserCto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  PageUserEto:
+    type: "object"
+    properties:
+      totalPages:
+        type: "integer"
+        format: "int32"
+      totalElements:
+        type: "integer"
+        format: "int64"
+      size:
+        type: "integer"
+        format: "int32"
+      content:
+        type: "array"
+        items:
+          $ref: "#/definitions/UserEto"
+      number:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/Sort"
+      numberOfElements:
+        type: "integer"
+        format: "int32"
+      first:
+        type: "boolean"
+      pageable:
+        $ref: "#/definitions/Pageable"
+      last:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  Pageable:
+    type: "object"
+    properties:
+      offset:
+        type: "integer"
+        format: "int64"
+      sort:
+        $ref: "#/definitions/Sort"
+      paged:
+        type: "boolean"
+      unpaged:
+        type: "boolean"
+      pageNumber:
+        type: "integer"
+        format: "int32"
+      pageSize:
+        type: "integer"
+        format: "int32"
+  PaymentOptionEto:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+        enum:
+        - "PAYPAL"
+        - "SEPA"
+        - "PAYPALME"
+      reference:
+        type: "string"
+  Sort:
+    type: "object"
+    properties:
+      sorted:
+        type: "boolean"
+      unsorted:
+        type: "boolean"
+      empty:
+        type: "boolean"
+  StoreEto:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      description:
+        type: "string"
+  UserCto:
+    type: "object"
+    properties:
+      user:
+        $ref: "#/definitions/UserEto"
+      address:
+        $ref: "#/definitions/AddressEto"
+      acceptedPaymentOptions:
+        type: "array"
+        items:
+          $ref: "#/definitions/PaymentOptionEto"
+  UserEto:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      modificationCounter:
+        type: "integer"
+        format: "int32"
+      login:
+        type: "string"
+      surname:
+        type: "string"
+      possiblePaymentOptions:
+        type: "array"
+        items:
+          type: "string"
+          enum:
+          - "PAYPAL"
+          - "SEPA"
+          - "PAYPALME"
+      forename:
+        type: "string"
+  UserProfileTo:
+    type: "object"
+    properties:
+      login:
+        type: "string"

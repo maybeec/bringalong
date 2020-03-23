@@ -22,13 +22,13 @@ public interface User extends ApplicationEntity {
    * @return fornameId
    */
 
-  public String getForname();
+  public String getForename();
 
   /**
-   * @param forname setter for forname attribute
+   * @param forname setter for forename attribute
    */
 
-  public void setForname(String forname);
+  public void setForename(String forname);
 
   /**
    * @return surnameId
@@ -41,20 +41,6 @@ public interface User extends ApplicationEntity {
    */
 
   public void setSurname(String surname);
-
-  /**
-   * getter for addressId attribute
-   * 
-   * @return addressId
-   */
-
-  public Long getAddressId();
-
-  /**
-   * @param address setter for address attribute
-   */
-
-  public void setAddressId(Long addressId);
 
   /**
    * @return possiblePaymentOptionsId

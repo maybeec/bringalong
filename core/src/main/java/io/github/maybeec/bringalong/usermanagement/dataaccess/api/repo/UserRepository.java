@@ -37,15 +37,11 @@ public interface UserRepository extends DefaultRepository<UserEntity> {
     }
     String forname = criteria.getForname();
     if (forname != null && !forname.isEmpty()) {
-      QueryUtil.get().whereString(query, $(alias.getForname()), forname, criteria.getFornameOption());
+      QueryUtil.get().whereString(query, $(alias.getForename()), forname, criteria.getFornameOption());
     }
     String surname = criteria.getSurname();
     if (surname != null && !surname.isEmpty()) {
       QueryUtil.get().whereString(query, $(alias.getSurname()), surname, criteria.getSurnameOption());
-    }
-    Long address = criteria.getAddressId();
-    if (address != null) {
-      query.where($(alias.getAddress().getId()).eq(address));
     }
     if (criteria.getPageable() == null) {
       criteria.setPageable(PageRequest.of(0, Integer.MAX_VALUE));
@@ -79,9 +75,9 @@ public interface UserRepository extends DefaultRepository<UserEntity> {
             break;
           case "forname":
             if (next.isAscending()) {
-              query.orderBy($(alias.getForname()).asc());
+              query.orderBy($(alias.getForename()).asc());
             } else {
-              query.orderBy($(alias.getForname()).desc());
+              query.orderBy($(alias.getForename()).desc());
             }
             break;
           case "surname":
@@ -89,13 +85,6 @@ public interface UserRepository extends DefaultRepository<UserEntity> {
               query.orderBy($(alias.getSurname()).asc());
             } else {
               query.orderBy($(alias.getSurname()).desc());
-            }
-            break;
-          case "address":
-            if (next.isAscending()) {
-              query.orderBy($(alias.getAddress().getId()).asc());
-            } else {
-              query.orderBy($(alias.getAddress().getId()).desc());
             }
             break;
           default:

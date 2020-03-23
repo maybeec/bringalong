@@ -56,7 +56,7 @@ public class AddressEto extends AbstractEto implements Address {
   }
 
   @Override
-  public String getAdditionalHints() {
+  public String getAdditionalInformation() {
 
     return additionalHints;
   }

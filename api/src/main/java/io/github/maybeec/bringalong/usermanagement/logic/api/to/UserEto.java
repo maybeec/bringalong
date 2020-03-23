@@ -20,8 +20,6 @@ public class UserEto extends AbstractEto implements User {
 
   private String surname;
 
-  private Long addressId;
-
   private List<PaymentType> possiblePaymentOptions;
 
   @Override
@@ -37,13 +35,13 @@ public class UserEto extends AbstractEto implements User {
   }
 
   @Override
-  public String getForname() {
+  public String getForename() {
 
     return forname;
   }
 
   @Override
-  public void setForname(String forname) {
+  public void setForename(String forname) {
 
     this.forname = forname;
   }
@@ -58,18 +56,6 @@ public class UserEto extends AbstractEto implements User {
   public void setSurname(String surname) {
 
     this.surname = surname;
-  }
-
-  @Override
-  public Long getAddressId() {
-
-    return addressId;
-  }
-
-  @Override
-  public void setAddressId(Long addressId) {
-
-    this.addressId = addressId;
   }
 
   @Override
@@ -92,9 +78,6 @@ public class UserEto extends AbstractEto implements User {
     result = prime * result + ((this.login == null) ? 0 : this.login.hashCode());
     result = prime * result + ((this.forname == null) ? 0 : this.forname.hashCode());
     result = prime * result + ((this.surname == null) ? 0 : this.surname.hashCode());
-
-    result = prime * result + ((this.addressId == null) ? 0 : this.addressId.hashCode());
-
     result = prime * result + ((this.possiblePaymentOptions == null) ? 0 : this.possiblePaymentOptions.hashCode());
     return result;
   }
@@ -132,14 +115,6 @@ public class UserEto extends AbstractEto implements User {
         return false;
       }
     } else if (!this.surname.equals(other.surname)) {
-      return false;
-    }
-
-    if (this.addressId == null) {
-      if (other.addressId != null) {
-        return false;
-      }
-    } else if (!this.addressId.equals(other.addressId)) {
       return false;
     }
 

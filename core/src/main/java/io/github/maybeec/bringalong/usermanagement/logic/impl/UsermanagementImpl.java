@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 
 import io.github.maybeec.bringalong.general.logic.base.AbstractComponentFacade;
 import io.github.maybeec.bringalong.usermanagement.logic.api.Usermanagement;
@@ -17,6 +18,7 @@ import io.github.maybeec.bringalong.usermanagement.logic.api.usecase.UcManageUse
  * Implementation of component interface of usermanagement
  */
 @Named
+@Validated
 public class UsermanagementImpl extends AbstractComponentFacade implements Usermanagement {
 
   @Inject
