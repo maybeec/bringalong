@@ -13,7 +13,12 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/BringDemandEto"
       responses:
         200:
           description: "successful operation"
@@ -26,7 +31,12 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/BringDemandSearchCriteriaTo"
       responses:
         200:
           description: "successful operation"
@@ -98,7 +108,12 @@ paths:
       - "application/json"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/UserEto"
       responses:
         200:
           description: "successful operation"
@@ -144,13 +159,13 @@ definitions:
   Address:
     type: "object"
     properties:
+      additionalInformation:
+        type: "string"
       streetAndNumber:
         type: "string"
       plz:
         type: "string"
       city:
-        type: "string"
-      additionalInformation:
         type: "string"
   AddressEto:
     type: "object"
@@ -200,6 +215,44 @@ definitions:
       userId:
         type: "integer"
         format: "int64"
+  BringDemandSearchCriteriaTo:
+    type: "object"
+    properties:
+      pageable:
+        $ref: "#/definitions/Pageable"
+      item:
+        type: "string"
+      dropHint:
+        type: "string"
+      deadline:
+        type: "string"
+        format: "date-time"
+      estimatedAmount:
+        type: "integer"
+        format: "int32"
+      currency:
+        type: "string"
+      lon:
+        type: "number"
+        format: "double"
+      lat:
+        type: "number"
+        format: "double"
+      range:
+        type: "integer"
+        format: "int32"
+      acceptedByUser:
+        type: "integer"
+        format: "int64"
+      userId:
+        type: "integer"
+        format: "int64"
+      itemOption:
+        $ref: "#/definitions/StringSearchConfigTo"
+      dropHintOption:
+        $ref: "#/definitions/StringSearchConfigTo"
+      currencyOption:
+        $ref: "#/definitions/StringSearchConfigTo"
   CsrfToken:
     type: "object"
     properties:
@@ -218,6 +271,9 @@ definitions:
       totalElements:
         type: "integer"
         format: "int64"
+      number:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -225,16 +281,13 @@ definitions:
         type: "array"
         items:
           type: "object"
-      number:
-        type: "integer"
-        format: "int32"
       sort:
         $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
-        type: "boolean"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
@@ -250,6 +303,9 @@ definitions:
       totalElements:
         type: "integer"
         format: "int64"
+      number:
+        type: "integer"
+        format: "int32"
       size:
         type: "integer"
         format: "int32"
@@ -257,16 +313,13 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/BringDemandEto"
-      number:
-        type: "integer"
-        format: "int32"
       sort:
         $ref: "#/definitions/Sort"
+      first:
+        type: "boolean"
       numberOfElements:
         type: "integer"
         format: "int32"
-      first:
-        type: "boolean"
       pageable:
         $ref: "#/definitions/Pageable"
       last:
@@ -317,6 +370,29 @@ definitions:
         type: "boolean"
       empty:
         type: "boolean"
+  StringSearchConfigTo:
+    type: "object"
+    properties:
+      ignoreCase:
+        type: "boolean"
+      matchSubstring:
+        type: "boolean"
+      likeSyntax:
+        type: "string"
+        enum:
+        - "GLOB"
+        - "SQL"
+      operator:
+        type: "string"
+        enum:
+        - "EQ"
+        - "NE"
+        - "LT"
+        - "LE"
+        - "GT"
+        - "GE"
+        - "LIKE"
+        - "NOT_LIKE"
   UserCto:
     type: "object"
     properties:

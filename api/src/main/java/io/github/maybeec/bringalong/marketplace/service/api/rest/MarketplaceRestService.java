@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import io.github.maybeec.bringalong.marketplace.logic.api.Marketplace;
 import io.github.maybeec.bringalong.marketplace.logic.api.to.BringDemandEto;
 import io.github.maybeec.bringalong.marketplace.logic.api.to.BringDemandSearchCriteriaTo;
+import io.swagger.annotations.ApiParam;
 
 /**
  * The service interface for REST calls in order to execute the logic of component {@link Marketplace}.
@@ -41,7 +42,7 @@ public interface MarketplaceRestService {
    */
   @POST
   @Path("/bringdemand/")
-  public BringDemandEto saveBringDemand(BringDemandEto bringdemand);
+  public BringDemandEto saveBringDemand(/* kongchen/swagger-maven-plugin#606 */@ApiParam BringDemandEto bringdemand);
 
   /**
    * Delegates to {@link Marketplace#deleteBringDemand}.
@@ -60,6 +61,7 @@ public interface MarketplaceRestService {
    */
   @Path("/bringdemand/search")
   @POST
-  public Page<BringDemandEto> findBringDemands(BringDemandSearchCriteriaTo searchCriteriaTo);
+  public Page<BringDemandEto> findBringDemands(
+      /* kongchen/swagger-maven-plugin#606 */@ApiParam BringDemandSearchCriteriaTo searchCriteriaTo);
 
 }

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import io.github.maybeec.bringalong.usermanagement.logic.api.Usermanagement;
 import io.github.maybeec.bringalong.usermanagement.logic.api.to.UserCto;
 import io.github.maybeec.bringalong.usermanagement.logic.api.to.UserEto;
+import io.swagger.annotations.ApiParam;
 
 /**
  * The service interface for REST calls in order to execute the logic of component {@link Usermanagement}.
@@ -48,6 +49,6 @@ public interface UsermanagementRestService {
    */
   @POST
   @Path("/user/")
-  public UserEto saveUser(UserEto user);
+  public UserEto saveUser(/* kongchen/swagger-maven-plugin#606 */@ApiParam UserEto user);
 
 }
