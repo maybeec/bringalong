@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService, GetStoreOrdersResult, BringOrderResult } from 'src/api';
+import { DefaultService } from 'src/api';
 import { getUser, getUserSuccess, getUserError } from './app.actions';
+import { UserProfileTo } from 'src/api/model/userProfileTo';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class AppEffects {
         this.actions$.pipe(
             ofType(getUser),
             mergeMap(
-                (payload) => (this.service.getStoreOrders(1, 'body') as Observable<GetStoreOrdersResult>) // TODO: richtige FKT
+                () => (this.service.getCurrentUser('body') as Observable<UserProfileTo>)
                 .pipe(
                     map(result => getUserSuccess(result)),
                     catchError(() => of(getUserError()))

@@ -31,20 +31,24 @@ import { acceptedOrdersReducer } from './accepted-orders/accepted-orders.reducer
 import { AcceptedOrdersEffects } from './accepted-orders/accepted-orders.effects';
 import { editReducer } from './edit-order/edit-order.reducer';
 import { EditOrderEffects } from './edit-order/edit-order.effects';
+import { newOrderReducer } from './new-order/new-order.reducer';
+import { NewOrderEffects } from './new-order/new-order.effects';
 
 export function apiConfigFactory(): Configuration {
-  return new Configuration();
+  return new Configuration({
+    basePath: '/services/rest'
+  });
 }
 
 const routes: Routes = [
   { path: '', component: OrdersComponent },
-  { path: '/orders', component: OrdersComponent },
-  { path: '/orders/:id', component: OrderComponent },
-  { path: '/myOrders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
-  { path: '/myOrders/new', component: NewOrderComponent, canActivate: [AuthGuardService] },
-  { path: '/myOrders/:id', component: EditOrderComponent, canActivate: [AuthGuardService] },
-  { path: '/acceptedOrders', component: AcceptedOrdersComponent, canActivate: [AuthGuardService] },
-  { path: '/acceptedOrders/:id', component: OrderComponent, canActivate: [AuthGuardService] },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'orders/:id', component: OrderComponent },
+  { path: 'myOrders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
+  { path: 'myOrders/new', component: NewOrderComponent, canActivate: [AuthGuardService] },
+  { path: 'myOrders/:id', component: EditOrderComponent, canActivate: [AuthGuardService] },
+  { path: 'acceptedOrders', component: AcceptedOrdersComponent, canActivate: [AuthGuardService] },
+  { path: 'acceptedOrders/:id', component: OrderComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({
@@ -69,12 +73,19 @@ const routes: Routes = [
                         myOrders: myOrdersReducer,
                         order: orderReducer,
                         acceptedOrders: acceptedOrdersReducer,
-                        editOrder: editReducer }),
+                        editOrder: editReducer,
+                        newOrder: newOrderReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AppEffects, OrdersEffects, MyOrdersEffects, OrderEffects, AcceptedOrdersEffects, EditOrderEffects])
+    EffectsModule.forRoot([AppEffects,
+                          OrdersEffects,
+                          MyOrdersEffects,
+                          OrderEffects,
+                          AcceptedOrdersEffects,
+                          EditOrderEffects,
+                          NewOrderEffects])
   ],
   providers: [
     AuthGuardService,

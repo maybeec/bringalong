@@ -1,7 +1,7 @@
-import { StoreOrder } from 'src/api';
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 export interface AcceptedOrdersAppState {
-    orders: StoreOrder[]; // TODO: neuen Datentyp
+    orders: PageBringDemandEto[];
 }
 
 export interface AcceptedOrdersState {

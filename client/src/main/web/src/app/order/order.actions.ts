@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { GetStoreOrdersResult, BringOrderResult } from 'src/api';
 
 export const getOrder = createAction('[Order Component] getOrder', props<{id: number}>());
 export const getOrderSuccess = createAction('[Order Component] getOrder Success', props<any>()); // TODO:

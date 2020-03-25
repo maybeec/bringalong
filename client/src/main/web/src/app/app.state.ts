@@ -3,6 +3,7 @@ import { MyOrdersState } from './my-orders/my-orders.state';
 import { OrderState } from './order/order.state';
 import { AcceptedOrdersState } from './accepted-orders/accepted-orders.state';
 import { EditOrderState } from './edit-order/edit-order.state';
+import { UserProfileTo } from 'src/api/model/userProfileTo';
 
 export interface ApplicationUiState {
     message: string;
@@ -10,6 +11,7 @@ export interface ApplicationUiState {
 
 export interface ApplicationAppState {
     loggedIn: boolean;
+    user?: UserProfileTo;
 }
 
 export interface ApplicationState {

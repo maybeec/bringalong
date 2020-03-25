@@ -1,1 +1,11 @@
-<p>new-order works!</p>
+<form (ngSubmit)="order()">
+    Welche Sachen benötigen Sie:
+    <textarea id="item" [(ngModel)]="item"></textarea>
+    Geben Sie bitte möglichst genau an wo die Sachen abgestellt werden sollen:
+    <textarea id="dropHint" [(ngModel)]="dropHint"></textarea>
+    Wissen Sie schon wie teuer die Sachen ungefähr sein werden?
+    <input id="estimatedAmount" [(ngModel)]="estimatedAmount"/>
+    Bis wann benötigen Sie die Sachen spätestens?
+    <input id="endDateTime" [(ngModel)]="endDateTime"/>
+    <button>Bestellen</button>
+</form>

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs-compat/Observable';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { getAcceptedOrders } from './accepted-orders.actions';
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 @Component({
   selector: 'app-accepted-orders',
@@ -10,13 +11,15 @@ import { getAcceptedOrders } from './accepted-orders.actions';
   styleUrls: ['./accepted-orders.component.scss']
 })
 export class AcceptedOrdersComponent implements OnInit {
-  orders$: Observable<any>; // TODO: Datentyp
+  orders$: Observable<PageBringDemandEto[]>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.orders$ = this.store.select(state => state.acceptedOrders.appState.orders);
-    this.store.dispatch(getAcceptedOrders());
+    this.store.select(state => state.app.appState.user).subscribe(user => {
+      //this.store.dispatch(getAcceptedOrders(user.id));
+    });
   }
 
 }

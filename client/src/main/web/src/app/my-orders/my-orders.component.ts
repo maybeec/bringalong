@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { Observable } from 'rxjs';
 import { getMyOrders } from './my-orders.actions';
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 @Component({
   selector: 'app-my-orders',
@@ -10,7 +11,7 @@ import { getMyOrders } from './my-orders.actions';
   styleUrls: ['./my-orders.component.scss']
 })
 export class MyOrdersComponent implements OnInit {
-  orders$: Observable<any>; // TODO: Datentyp
+  orders$: Observable<PageBringDemandEto[]>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -18,5 +19,4 @@ export class MyOrdersComponent implements OnInit {
     this.orders$ = this.store.select(state => state.myOrders.appState.orders);
     this.store.dispatch(getMyOrders());
   }
-
 }

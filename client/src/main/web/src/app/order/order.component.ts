@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { getOrder, bringOrder } from './order.actions';
 import { Observable } from 'rxjs';
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 @Component({
   selector: 'app-order',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class OrderComponent implements OnInit {
   id: number;
-  order$: Observable<any>; // TODO:
+  order$: Observable<PageBringDemandEto>;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) { }
 

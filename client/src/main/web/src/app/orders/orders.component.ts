@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { Observable } from 'rxjs';
-import { StoreOrder } from 'src/api';
 import { getOrders, getOrdersByLatLong } from './orders.actions';
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 declare function geoplugin_latitude(): number;
 declare function geoplugin_longitude(): number;
@@ -15,7 +15,7 @@ declare function geoplugin_longitude(): number;
 })
 export class OrdersComponent implements OnInit {
 
-  orders$: Observable<StoreOrder[]>;
+  orders$: Observable<PageBringDemandEto[]>;
 
   constructor(private store: Store<AppState>) { }
 

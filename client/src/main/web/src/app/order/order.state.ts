@@ -1,5 +1,7 @@
+import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
+
 export interface OrderAppState {
-    order: any; // TODO: neuen Datentyp
+    order: PageBringDemandEto;
 }
 
 export interface OrderState {

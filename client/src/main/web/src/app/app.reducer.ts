@@ -27,8 +27,9 @@ const appReducerCreator = createReducer(initialState,
             ... state,
             appState: {
                 ... state.appState,
-                loggedIn: true
-            } // TODO: User speichern
+                loggedIn: true,
+                user: payload
+            }
         };
     }),
     on(getUserError, (state) => {
