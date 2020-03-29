@@ -1,9 +1,9 @@
 <form (ngSubmit)="order()">
-    <div>Welche Sachen benötigen Sie:</div>
+    <div class="headline">Welche Sachen benötigen Sie:</div>
     <textarea id="item" name="item" [(ngModel)]="item"></textarea>
-    <div>Geben Sie bitte möglichst genau an wo die Sachen abgestellt werden sollen:</div>
+    <div class="headline">Geben Sie bitte möglichst genau an wo die Sachen abgestellt werden sollen:</div>
     <textarea id="dropHint" name="dropHint" [(ngModel)]="dropHint"></textarea>
-    <div>Wissen Sie schon wie teuer die Sachen ungefähr sein werden?</div>
+    <div class="headline">Wissen Sie schon wie teuer die Sachen ungefähr sein werden?</div>
     <select id="estimatedAmount" name="estimatedAmount" [(ngModel)]="estimatedAmount">
         <option value="5">weniger als 5€</option>
         <option value="10">weniger als 10€</option>
@@ -16,7 +16,7 @@
         <option value="500">weniger als 500€</option>
         <option value="1000">mehr als 500€</option>
     </select>
-    <div>Bis wann benötigen Sie die Sachen spätestens?</div>
+    <div class="headline">Bis wann benötigen Sie die Sachen spätestens?</div>
     <input id="endDateTime" name="endDateTime" [(ngModel)]="endDateTime"/>
-    <div><button>Bestellen</button></div>
+    <div><button [disabled]="!canOrder()">Bestellen</button></div>
 </form>

@@ -1,5 +1,15 @@
+@import '../colors';
+
+* {
+    color: $color1;
+ }
+
 textarea {
     resize: none;
     width: 100%;
     height: 200px;
+}
+
+.headline {
+    font-weight: bold;
 }

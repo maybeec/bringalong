@@ -8,7 +8,7 @@
         <div class="text">{{(order$|async).text}}</div>
         <div class="headline">Hier sollen sie Sachen abgestellt werden:</div>
         <div class="dropHint">{{(order$|async).dropHint}}</div>
-        <div class="headline">Zu dieser Adresse müssen die Sachen gebracht werden <span *ngIf="!(order$|async).acceptedByCurrentUser">(die vollständige Adresse wird angezeigt wenn die die Bestellung annehmen)</span>:</div>
+        <div class="headline">Zu dieser Adresse müssen die Sachen gebracht werden <span *ngIf="!(order$|async).acceptedByCurrentUser">(die vollständige Adresse wird angezeigt wenn Sie die Bestellung annehmen)</span>:</div>
         <div class="address">
             {{(user$|async).street}}&nbsp;
             <span *ngIf="!(order$|async).acceptedByCurrentUser">{{(user$|async).number}}</span>&nbsp;

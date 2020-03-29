@@ -11,8 +11,8 @@ import { createOrder } from './new-order.actions';
 })
 export class NewOrderComponent implements OnInit {
 
-  item: string;
-  dropHint: string;
+  item = '';
+  dropHint = '';
   estimatedAmount = 5;
   endDateTime: string;
 
@@ -33,6 +33,8 @@ export class NewOrderComponent implements OnInit {
 
   canOrder(): boolean {
     return this.item.length > 0
-        && this.dropHint.length > 0;
+        && this.dropHint.length > 0
+        && this.endDateTime.length > 0
+        && moment(this.endDateTime).unix() > 0;
   }
 }
