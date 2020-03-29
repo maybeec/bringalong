@@ -34,7 +34,7 @@ function nonQuery($query)
 {
     $dbconn = connect();
 
-    echo $query;
+    //echo $query;
     $result = pg_query($query);
     
     pg_close($dbconn);
