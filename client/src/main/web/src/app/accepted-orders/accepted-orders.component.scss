@@ -1,0 +1,32 @@
+@import '../colors';
+
+* {
+    color: $color1;
+ }
+
+.order {  
+    > div {
+        min-height: 100px;
+        padding: 10px;
+        white-space: pre-line;
+        cursor: pointer;
+    }
+    > div:nth-child(even) {
+        background: $color5
+    }
+    > div:nth-child(odd) {
+        background: $color4
+    }
+}
+
+nav {
+    a {
+     padding: 10px;
+     font-weight: bold;
+    }
+    a:hover{
+     background-color: $color4; 
+     color: $color1;
+     text-decoration: none;
+    }
+ }

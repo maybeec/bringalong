@@ -172,10 +172,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteOrder(orderId: number, observe?: 'body', reportProgress?: boolean): Observable<DeleteOrderResponse>;
-    public deleteOrder(orderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DeleteOrderResponse>>;
-    public deleteOrder(orderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DeleteOrderResponse>>;
-    public deleteOrder(orderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public deleteOrder(orderId: string, observe?: 'body', reportProgress?: boolean): Observable<DeleteOrderResponse>;
+    public deleteOrder(orderId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DeleteOrderResponse>>;
+    public deleteOrder(orderId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DeleteOrderResponse>>;
+    public deleteOrder(orderId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling deleteOrder.');
@@ -261,10 +261,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getOrder(orderId: number, observe?: 'body', reportProgress?: boolean): Observable<GetOrderResponse>;
-    public getOrder(orderId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOrderResponse>>;
-    public getOrder(orderId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOrderResponse>>;
-    public getOrder(orderId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getOrder(orderId: string, observe?: 'body', reportProgress?: boolean): Observable<GetOrderResponse>;
+    public getOrder(orderId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GetOrderResponse>>;
+    public getOrder(orderId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GetOrderResponse>>;
+    public getOrder(orderId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling getOrder.');
@@ -489,10 +489,10 @@ export class DefaultService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateOrder(orderId: number, body?: UpdateOrderRequest, observe?: 'body', reportProgress?: boolean): Observable<UpdateOrderResponse>;
-    public updateOrder(orderId: number, body?: UpdateOrderRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UpdateOrderResponse>>;
-    public updateOrder(orderId: number, body?: UpdateOrderRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UpdateOrderResponse>>;
-    public updateOrder(orderId: number, body?: UpdateOrderRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateOrder(orderId: string, body?: UpdateOrderRequest, observe?: 'body', reportProgress?: boolean): Observable<UpdateOrderResponse>;
+    public updateOrder(orderId: string, body?: UpdateOrderRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UpdateOrderResponse>>;
+    public updateOrder(orderId: string, body?: UpdateOrderRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UpdateOrderResponse>>;
+    public updateOrder(orderId: string, body?: UpdateOrderRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (orderId === null || orderId === undefined) {
             throw new Error('Required parameter orderId was null or undefined when calling updateOrder.');

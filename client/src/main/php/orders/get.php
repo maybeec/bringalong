@@ -2,20 +2,19 @@
     require __DIR__ . '/../auth.php';
     require __DIR__ . '/../db.php';
 
-    $claims = false;
-    try
-    {
-        $claims = checkAuth();
-    }
-    catch(Exception $e){}
+    $claims = checkAuth();
 
     $requestUrl = $_SERVER['REQUEST_URI'];
     $urlParts = explode("/", $requestUrl);
 
-    $long = $urlParts[count($urlParts)-1];
-    $lat = $urlParts[count($urlParts)-2];
+    $mode = $urlParts[count($urlParts)-1];
+    $col = 'userId';
+    if($mode === 'accepted')
+    {
+        $col = 'acceptedUserId';
+    }
 
-    $query = 'SELECT * FROM (SELECT "users"."id" as "userId", "users"."name", "users"."street", "users"."zipcode", "users"."city", "users"."number", ST_X("users"."coordinates"::geometry) AS lng, ST_Y("users"."coordinates"::geometry) AS lat, "orders"."id", "orders"."text", "orders"."dropHint", "orders"."deadline", "orders"."estimatedAmount", "orders"."currency", ST_Distance("users"."coordinates", ST_GeometryFromText(\'Point(' . pg_escape_string($long) . " " . pg_escape_string($lat) . ')\')) as "distance", "orders"."acceptedUserId" FROM orders join users on("orders"."userId" = "users"."id") where "orders"."acceptedUserId" is NULL) r order by distance limit 50;';
+    $query = 'SELECT "users"."id" as "userId", "users"."name", "users"."street", "users"."zipcode", "users"."city", "users"."number", ST_X("users"."coordinates"::geometry) AS lng, ST_Y("users"."coordinates"::geometry) AS lat, "orders"."id", "orders"."text", "orders"."dropHint", "orders"."deadline", "orders"."estimatedAmount", "orders"."currency", "orders"."acceptedUserId" FROM orders join users on("orders"."userId" = "users"."id") where "orders"."' . $col . '" = \'' . $claims["userId"] . '\'';
     $arr = fetchAll($query);
     
     $response = array();

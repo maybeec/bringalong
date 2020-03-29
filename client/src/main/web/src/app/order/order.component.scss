@@ -1,0 +1,25 @@
+@import '../colors';
+
+* {
+    color: $color1;
+ }
+
+.headline {
+    font-weight: bold;
+}
+
+.text {
+    white-space: pre-line;
+}
+
+nav {
+    a {
+     padding: 10px;
+     font-weight: bold;
+    }
+    a:hover{
+     background-color: $color4; 
+     color: $color1;
+     text-decoration: none;
+    }
+ }

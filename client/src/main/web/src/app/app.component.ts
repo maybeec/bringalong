@@ -23,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy  {
         this.store.dispatch(getUser());
       }
     });
+    this.store.dispatch(getUser());
   }
   ngOnDestroy(): void {
     this.loggedInSubscription.unsubscribe();

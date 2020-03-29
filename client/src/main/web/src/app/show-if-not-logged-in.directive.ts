@@ -7,15 +7,19 @@ import { Subscription } from 'rxjs';
   selector: '[appShowIfNotLoggedIn]'
 })
 export class ShowIfNotLoggedInDirective implements OnInit, OnDestroy {
- 
+
   loggedInSubscription: Subscription;
- 
+  originalValue: any;
+
   constructor(private el: ElementRef, private store: Store<AppState>) { }
 
   ngOnInit() {
+    this.originalValue = this.el.nativeElement.style.display;
     this.loggedInSubscription = this.store.select(state => state.app.appState.loggedIn).subscribe(loggedIn => {
       if (loggedIn) {
         this.el.nativeElement.style.display = 'none';
+      } else {
+        this.el.nativeElement.style.display = this.originalValue;
       }
     });
   }

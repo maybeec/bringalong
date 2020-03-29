@@ -12,10 +12,12 @@
 
 
 export interface Order { 
-    id?: number;
+    id?: string;
     text?: string;
     dropHint?: string;
     deadline?: string;
     estimatedAmount?: number;
     currency?: string;
+    accepted?: boolean;
+    acceptedByCurrentUser?: boolean;
 }

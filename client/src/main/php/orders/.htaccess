@@ -2,3 +2,4 @@ RewriteEngine on
 RewriteRule ^.+/.+$ search.php
 RewriteRule ^.+/bring$ bring.php
 RewriteRule ^$ create.php
+RewriteRule ^(own|accepted)$ get.php

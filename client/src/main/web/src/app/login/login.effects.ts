@@ -17,6 +17,7 @@ export class LoginEffects {
                 .pipe(
                     map(result => {
                         this.service.configuration.apiKeys = { Authorization: 'Bearer ' + result.token };
+                        localStorage.setItem('token', result.token);
                         this.router.navigate(['']);
                         return loginSuccess(result);
                     }),

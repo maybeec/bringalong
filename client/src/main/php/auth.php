@@ -89,7 +89,7 @@ function checkAuth()
     $jwt = substr($header, 7);
     $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
 
-    if((time() - $decoded->iat) > 3600)
+    if((time() - $decoded->iat) > 36000)
     {
         http_response_code(401);
         exit ();

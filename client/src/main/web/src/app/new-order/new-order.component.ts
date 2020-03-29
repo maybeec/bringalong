@@ -13,13 +13,13 @@ export class NewOrderComponent implements OnInit {
 
   item: string;
   dropHint: string;
-  estimatedAmount: number; // TODO: dropdown drauß machen
+  estimatedAmount = 5;
   endDateTime: string;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.endDateTime = moment().format('YYYY-MM-DD HH:mm');
+    this.endDateTime = moment().add(3, 'days').format('YYYY-MM-DD HH:mm');
   }
 
   order(): void {
@@ -29,5 +29,10 @@ export class NewOrderComponent implements OnInit {
                                         estimatedAmount: this.estimatedAmount,
                                         deadline: moment(this.endDateTime).toString(),
                                         currency: 'Euro'}})); // TODO:
+  }
+
+  canOrder(): boolean {
+    return this.item.length > 0
+        && this.dropHint.length > 0;
   }
 }

@@ -41,7 +41,7 @@ import { loginReducer } from './login/login.reducer';
 export function apiConfigFactory(): Configuration {
   return new Configuration({
     basePath: '/rest',
-    apiKeys: {}
+    apiKeys: { Authorization: 'Bearer ' + localStorage.getItem('token') }
   });
 }
 

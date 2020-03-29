@@ -2,6 +2,7 @@
 <nav>
     <a routerLink="/">Bestellungen</a>
     <a appHideIfNotLoggedIn routerLink="/myOrders">Meine Bestellungen</a>
+    <a appHideIfNotLoggedIn routerLink="/acceptedOrders">Angenommene Bestellungen</a>
     <a appShowIfNotLoggedIn routerLink="/login">Login</a>
 </nav>
 <router-outlet></router-outlet>

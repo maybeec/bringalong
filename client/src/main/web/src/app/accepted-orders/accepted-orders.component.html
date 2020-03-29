@@ -1,6 +1,15 @@
-<div>
-    <div *ngFor="let order of (orders$ | async)" routerLink="/acceptedOrders/order.id)">
-        <div>{{order.name}}</div>
-        <div>{{order.address}}</div>
+<div class="d-flex flex-column">
+    <div class="order">
+        <div *ngFor="let order of (orders$ | async)" [routerLink]="['/acceptedOrders', order.order.id]">
+            <div class="text">{{order.order.text | slice:0:250}}</div>
+            <div class="d-flex flex-row">
+                <div>{{order.user.street}}</div>
+                <div>{{order.user.zipcode}}</div>
+                <div>{{order.user.city}}</div>
+            </div>
+        </div>
+        <div *ngIf="(orders$ | async) != undefined && (orders$ | async).length == 0">
+            Sie haben bisher noch keine Bestellungen angenommen.
+        </div>
     </div>
 </div>

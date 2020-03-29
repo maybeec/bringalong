@@ -1,14 +1,19 @@
 @import 'colors';
 
+* {
+   color: $color1;
+}
+
 nav {
-   background-color: $color2; 
+   background-color: $color5; 
    padding: 10px;
    a {
     padding: 10px;
-    color: $color5;
     font-weight: bold;
    }
    a:hover{
-    background-color: $color3; 
+    background-color: $color4; 
+    color: $color1;
+    text-decoration: none;
    }
 }

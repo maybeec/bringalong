@@ -10,6 +10,6 @@ export interface MyOrdersState {
 
 export const initialState: MyOrdersState = {
     appState: {
-        orders: []
+        orders: undefined
     }
 };

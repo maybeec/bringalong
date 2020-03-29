@@ -28,7 +28,8 @@ const appReducerCreator = createReducer(initialState,
             ... state,
             appState: {
                 ... state.appState,
-                user: payload.user
+                user: payload.user,
+                loggedIn: true
             }
         };
     }),

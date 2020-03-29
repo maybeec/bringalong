@@ -11,13 +11,13 @@ import { getOrderForEdit } from './edit-order.actions';
   styleUrls: ['./edit-order.component.scss']
 })
 export class EditOrderComponent implements OnInit {
-  id: number;
+  id: string;
   order$: Observable<any>; // TODO:
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
     this.order$ = this.store.select(state => state.editOrder.appState.order);
     this.store.dispatch(getOrderForEdit({ id: this.id }));
   }

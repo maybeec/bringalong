@@ -22,6 +22,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    console.log('ngOnInit');
     this.orders$ = this.store.select(state => state.orders.appState.orders);
     this.loggedInSubscription = this.store.select(state => state.app.appState.loggedIn).subscribe(loggedIn => {
       if (!loggedIn) {
@@ -33,6 +34,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }
     });
     this.userSubscription = this.store.select(state => state.app.appState.user).subscribe(user => {
+      console.log('user', user);
       if (user) {
         this.getOrdersByLatLong(user.lat, user.lng);
       }
@@ -40,6 +42,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('ngOnDestroy');
     this.loggedInSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
   }

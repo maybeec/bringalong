@@ -1,8 +1,19 @@
-<div *ngIf="id == (order$|async).number">
-    <div class="text">{{(order$|async).text.substr(250)}}</div>
-    <div class="address">
-        <div>{{(order$|async).street}}</div>
-        <div>{{(order$|async).zipcode}}</div>
-        <div>{{(order$|async).city}}</div>
+<div class="d-flex flex-column">
+    <nav class="d-flex justify-content-end">
+        <a *ngIf="((currentUser$ | async) && (currentUser$ | async).id != (user$|async).id)" (click)="bring()">Bestellung annehmen</a>
+        <a *ngIf="((currentUser$ | async) && (currentUser$ | async).id == (user$|async).id)" [routerLink]="['/myOrders', (order$|async).id]">Bearbeiten</a>
+    </nav>
+    <div *ngIf="id == (order$|async).id">
+        <div class="headline">Es werden folgende Sachen benötigt:</div>
+        <div class="text">{{(order$|async).text}}</div>
+        <div class="headline">Hier sollen sie Sachen abgestellt werden:</div>
+        <div class="dropHint">{{(order$|async).dropHint}}</div>
+        <div class="headline">Zu dieser Adresse müssen die Sachen gebracht werden <span *ngIf="!(order$|async).acceptedByCurrentUser">(die vollständige Adresse wird angezeigt wenn die die Bestellung annehmen)</span>:</div>
+        <div class="address">
+            {{(user$|async).street}}&nbsp;
+            <span *ngIf="!(order$|async).acceptedByCurrentUser">{{(user$|async).number}}</span>&nbsp;
+            {{(user$|async).zipcode}}&nbsp;
+            {{(user$|async).city}}
+        </div>
     </div>
 </div>
