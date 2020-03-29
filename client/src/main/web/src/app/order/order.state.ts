@@ -1,7 +1,9 @@
-import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
+import { Order, User } from 'src/api';
+
 
 export interface OrderAppState {
-    order: PageBringDemandEto;
+    order: Order;
+    user: User;
 }
 
 export interface OrderState {
@@ -10,6 +12,7 @@ export interface OrderState {
 
 export const initialState: OrderState = {
     appState: {
-        order: {}
+        order: {},
+        user: {}
     }
 };

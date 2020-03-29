@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService } from 'src/api';
+import { DefaultService, GetOrdersResponse, GetOrderResponse, DeleteOrderResponse } from 'src/api';
 import { getOrderForEdit, getOrderForEditSuccess, getOrderForEditError,
      deleteOrderSuccess, deleteOrderError, deleteOrder } from './edit-order.actions';
 import { Router } from '@angular/router';
-import { BringDemandEto } from 'src/api/model/bringDemandEto';
 
 @Injectable()
 export class EditOrderEffects {
@@ -15,7 +14,7 @@ export class EditOrderEffects {
         this.actions$.pipe(
             ofType(getOrderForEdit),
             mergeMap(
-                (payload) => (this.service.getBringDemand(payload.id, 'body') as Observable<BringDemandEto>)
+                (payload) => (this.service.getOrder(payload.id, 'body') as Observable<GetOrderResponse>)
                 .pipe(
                     map(result => getOrderForEditSuccess(result)),
                     catchError(() => of(getOrderForEditError()))
@@ -28,7 +27,7 @@ export class EditOrderEffects {
         this.actions$.pipe(
             ofType(deleteOrder),
             mergeMap(
-                (payload) => (this.service.deleteBringDemand(payload.id, 'body') as Observable<any>)
+                (payload) => (this.service.deleteOrder(payload.id, 'body') as Observable<DeleteOrderResponse>)
                 .pipe(
                     map(result => {
                             this.router.navigate(['/myOrders']);

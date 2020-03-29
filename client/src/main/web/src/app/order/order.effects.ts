@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService } from 'src/api';
+import { DefaultService, GetOrderResponse } from 'src/api';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import { bringOrder, getOrder, getOrderError, bringOrderSuccess, bringOrderError, getOrderSuccess } from './order.actions';
-import { BringDemandEto } from 'src/api/model/bringDemandEto';
 
 @Injectable()
 export class OrderEffects {
@@ -15,7 +14,7 @@ export class OrderEffects {
         this.actions$.pipe(
             ofType(getOrder),
             mergeMap(
-                (payload) => (this.service.getBringDemand(payload.id, 'body') as Observable<BringDemandEto>)
+                (payload) => (this.service.getOrder(payload.id, 'body') as Observable<GetOrderResponse>)
                 .pipe(
                     map(result => getOrderSuccess(result)),
                     catchError(() => of(getOrderError()))

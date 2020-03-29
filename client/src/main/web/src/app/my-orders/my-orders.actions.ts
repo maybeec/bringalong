@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
+import { GetOrdersResponse } from 'src/api';
 
 export const getMyOrders = createAction('[MyOrders Component] getMyOrders');
-export const getMyOrdersSuccess = createAction('[MyOrders Component] getMyOrders Success', props<{ orders: PageBringDemandEto[]}>());
+export const getMyOrdersSuccess = createAction('[MyOrders Component] getMyOrders Success', props<GetOrdersResponse>());
 export const getMyOrdersError = createAction('[MyOrders Component] getMyOrders Error');
 

@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './app.state';
 import { loggedOut, getUserSuccess, getUserError } from './app.actions';
+import { loginSuccess } from './login/login.actions';
 
 const genericErrorMessage = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
 function setGenericErrorMessage(state) {
@@ -27,8 +28,7 @@ const appReducerCreator = createReducer(initialState,
             ... state,
             appState: {
                 ... state.appState,
-                loggedIn: true,
-                user: payload
+                user: payload.user
             }
         };
     }),
@@ -38,6 +38,15 @@ const appReducerCreator = createReducer(initialState,
             appState: {
                 ... state.appState,
                 loggedIn: false
+            }
+        };
+    }),
+    on(loginSuccess, (state, payload) => {
+        return {
+            ... state,
+            appState: {
+                ... state.appState,
+                loggedIn: true
             }
         };
     })

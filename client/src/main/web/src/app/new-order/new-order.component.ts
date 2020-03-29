@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { createOrder } from './new-order.actions';
 
 @Component({
   selector: 'app-new-order',
@@ -10,16 +13,21 @@ export class NewOrderComponent implements OnInit {
 
   item: string;
   dropHint: string;
-  estimatedAmount: string;
+  estimatedAmount: number; // TODO: dropdown drauß machen
   endDateTime: string;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.endDateTime = moment().format('YYYY-MM-DD HH:mm');
   }
 
   order(): void {
+    this.store.dispatch(createOrder({ order: {
+                                        text: this.item,
+                                        dropHint: this.dropHint,
+                                        estimatedAmount: this.estimatedAmount,
+                                        deadline: moment(this.endDateTime).toString(),
+                                        currency: 'Euro'}})); // TODO:
   }
-
 }

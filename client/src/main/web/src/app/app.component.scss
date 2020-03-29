@@ -1,0 +1,14 @@
+@import 'colors';
+
+nav {
+   background-color: $color2; 
+   padding: 10px;
+   a {
+    padding: 10px;
+    color: $color5;
+    font-weight: bold;
+   }
+   a:hover{
+    background-color: $color3; 
+   }
+}

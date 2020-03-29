@@ -1,9 +1,17 @@
 <nav>
     <a appHideIfNotLoggedIn routerLink="/myOrders/new">Neue Bestellung</a>
+    <a appShowIfNotLoggedIn routerLink="/login">Neue Bestellung</a>
 </nav>
 <div>
     <div *ngFor="let order of (orders$ | async)" routerLink="/orders/order.id)">
-        <div>{{order.name}}</div>
-        <div>{{order.address}}</div>
+        <div class="text">{{order.order.text.substr(250)}}</div>
+        <div class="address">
+            <div>{{order.user.street}}</div>
+            <div>{{order.user.zipcode}}</div>
+            <div>{{order.user.city}}</div>
+        </div>
+    </div>
+    <div *ngIf="(orders$ | async) != undefined && (orders$ | async).length == 0">
+        Bisher gibt es in Ihrer Region noch keine Bestellungen. Um eine Bestellung anzulegen melden Sie sich bitte an.
     </div>
 </div>

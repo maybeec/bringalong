@@ -8,7 +8,8 @@ const orderReducerCreator = createReducer(initialState,
         return { ...state,
             appState: {
                 ...state.appState,
-                order: payload.order // TODO: payload übernehmen (auch state anpassen)
+                order: payload.order,
+                user: payload.user
             }
         };
     })

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService } from 'src/api';
-import { BringDemandEto } from 'src/api/model/bringDemandEto';
+import { DefaultService, CreateOrderResponse } from 'src/api';
 import { createOrder, createOrderSuccess, createOrderError } from './new-order.actions';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,7 @@ export class NewOrderEffects {
         this.actions$.pipe(
             ofType(createOrder),
             mergeMap(
-                (payload) => (this.service.saveBringDemand(payload, 'body') as Observable<BringDemandEto>)
+                (payload) => (this.service.createOrder(payload, 'body') as Observable<CreateOrderResponse>)
                 .pipe(
                     map(result => {
                         this.router.navigate(['/myOrders']);

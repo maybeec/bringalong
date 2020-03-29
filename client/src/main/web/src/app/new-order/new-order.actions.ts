@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { BringDemandEto } from 'src/api/model/bringDemandEto';
+import { CreateOrderRequest, CreateOrderResponse } from 'src/api';
 
-export const createOrder = createAction('[NewOrder Component] createOrder', props<BringDemandEto>());
-export const createOrderSuccess = createAction('[NewOrder Component] createOrder Success', props<BringDemandEto>()); // TODO:
+export const createOrder = createAction('[NewOrder Component] createOrder', props<CreateOrderRequest>());
+export const createOrderSuccess = createAction('[NewOrder Component] createOrder Success', props<CreateOrderResponse>()); // TODO:
 export const createOrderError = createAction('[NewOrder Component] createOrder Error');

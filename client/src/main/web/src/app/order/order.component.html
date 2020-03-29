@@ -1,3 +1,8 @@
 <div *ngIf="id == (order$|async).number">
-    <p>order works!</p>
+    <div class="text">{{(order$|async).text.substr(250)}}</div>
+    <div class="address">
+        <div>{{(order$|async).street}}</div>
+        <div>{{(order$|async).zipcode}}</div>
+        <div>{{(order$|async).city}}</div>
+    </div>
 </div>

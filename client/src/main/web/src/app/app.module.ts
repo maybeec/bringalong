@@ -33,15 +33,21 @@ import { editReducer } from './edit-order/edit-order.reducer';
 import { EditOrderEffects } from './edit-order/edit-order.effects';
 import { newOrderReducer } from './new-order/new-order.reducer';
 import { NewOrderEffects } from './new-order/new-order.effects';
+import { LoginComponent } from './login/login.component';
+import { ShowIfNotLoggedInDirective } from './show-if-not-logged-in.directive';
+import { LoginEffects } from './login/login.effects';
+import { loginReducer } from './login/login.reducer';
 
 export function apiConfigFactory(): Configuration {
   return new Configuration({
-    basePath: '/services/rest'
+    basePath: '/rest',
+    apiKeys: {}
   });
 }
 
 const routes: Routes = [
   { path: '', component: OrdersComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderComponent },
   { path: 'myOrders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
@@ -58,9 +64,11 @@ const routes: Routes = [
     MyOrdersComponent,
     NewOrderComponent,
     HideIfNotLoggedInDirective,
+    ShowIfNotLoggedInDirective,
     OrderComponent,
     EditOrderComponent,
-    AcceptedOrdersComponent
+    AcceptedOrdersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +82,8 @@ const routes: Routes = [
                         order: orderReducer,
                         acceptedOrders: acceptedOrdersReducer,
                         editOrder: editReducer,
-                        newOrder: newOrderReducer }),
+                        newOrder: newOrderReducer,
+                        login: loginReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
@@ -85,7 +94,8 @@ const routes: Routes = [
                           OrderEffects,
                           AcceptedOrdersEffects,
                           EditOrderEffects,
-                          NewOrderEffects])
+                          NewOrderEffects,
+                          LoginEffects])
   ],
   providers: [
     AuthGuardService,

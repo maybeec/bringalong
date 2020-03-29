@@ -1,7 +1,7 @@
-import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
+import { UserOrder } from 'src/api';
 
 export interface AcceptedOrdersAppState {
-    orders: PageBringDemandEto[];
+    orders: UserOrder[];
 }
 
 export interface AcceptedOrdersState {

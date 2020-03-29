@@ -1,19 +1,26 @@
-import { Directive, OnInit, ElementRef } from '@angular/core';
+import { Directive, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.state';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[appHideIfNotLoggedIn]'
 })
-export class HideIfNotLoggedInDirective implements OnInit {
+export class HideIfNotLoggedInDirective implements OnInit, OnDestroy {
 
+  loggedInSubscription: Subscription;
+ 
   constructor(private el: ElementRef, private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select(state => state.app.appState.loggedIn).subscribe(loggedIn => {
+    this.loggedInSubscription = this.store.select(state => state.app.appState.loggedIn).subscribe(loggedIn => {
       if (!loggedIn) {
-          this.el.nativeElement.style.display = 'none';
+        this.el.nativeElement.style.display = 'none';
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.loggedInSubscription.unsubscribe();
   }
 }

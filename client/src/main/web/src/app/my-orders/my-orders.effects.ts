@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { DefaultService } from 'src/api';
+import { DefaultService, GetOrdersResponse } from 'src/api';
 import { getMyOrders, getMyOrdersSuccess, getMyOrdersError } from './my-orders.actions';
-import { PageBringDemandEto } from 'src/api/model/pageBringDemandEto';
 
 
 @Injectable()
@@ -15,9 +14,9 @@ export class MyOrdersEffects {
             ofType(getMyOrders),
             mergeMap(
                 (payload) => (this.service
-                    .findBringDemands({  }, 'body') as Observable<PageBringDemandEto[]>) // TODO:
+                    .getOrders('own', 'body') as Observable<GetOrdersResponse>)
                 .pipe(
-                    map(result => getMyOrdersSuccess({ orders: result })),
+                    map(result => getMyOrdersSuccess(result)),
                     catchError(() => of(getMyOrdersError()))
                 )
             )
