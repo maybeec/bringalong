@@ -39,10 +39,14 @@ import { LoginEffects } from './login/login.effects';
 import { loginReducer } from './login/login.reducer';
 
 export function apiConfigFactory(): Configuration {
-  return new Configuration({
+  const config = new Configuration({
     basePath: '/rest',
-    apiKeys: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+    apiKeys: {  }
   });
+  if (localStorage.getItem('token')) {
+    config.apiKeys = { Authorization: 'Bearer ' + localStorage.getItem('token') };
+  }
+  return config;
 }
 
 const routes: Routes = [

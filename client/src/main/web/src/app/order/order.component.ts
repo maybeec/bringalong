@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
     this.store.dispatch(getOrder({ id: this.id }));
   }
 
-  bring(id: number): void {
+  bring(): void {
     this.store.dispatch(bringOrder({ id: this.id }));
   }
 

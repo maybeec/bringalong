@@ -2,12 +2,7 @@
     require __DIR__ . '/../auth.php';
     require __DIR__ . '/../db.php';
 
-    $claims = false;
-    try
-    {
-        $claims = checkAuth();
-    }
-    catch(Exception $e){}
+    $claims = checkAuth(false);
 
     $requestUrl = $_SERVER['REQUEST_URI'];
     $urlParts = explode("/", $requestUrl);

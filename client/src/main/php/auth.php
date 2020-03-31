@@ -73,28 +73,55 @@ QNFiBvqK3RupgaRc/2F+ha8CAwEAAQ==
 -----END PUBLIC KEY-----
 EOD;
 
-function checkAuth()
+function checkAuth($needed = true)
 {
-    global $publicKey;
-    $headers = getallheaders();
-    $header = "Bearer ";
-    if(array_key_exists('authorization',$headers)) 
+    try
     {
-        $header = $headers['authorization'];
-    }
-    else if(array_key_exists('Authorization',$headers)) 
-    {
-        $header = $headers['Authorization'];
-    }
-    $jwt = substr($header, 7);
-    $decoded = JWT::decode($jwt, $publicKey, array('RS256'));
+        global $publicKey;
+        $headers = getallheaders();
+        $header = "";
+        if(array_key_exists('authorization',$headers)) 
+        {
+            $header = $headers['authorization'];
+        }
+        else if(array_key_exists('Authorization',$headers)) 
+        {
+            $header = $headers['Authorization'];
+        }
+        if($header === "")
+        {
+            if($needed)
+            {
+                http_response_code(401);
+                exit ();
+            }
+            else
+            {
+                return false;
+            }
+        }
+        $jwt = substr($header, 7);
+        $decoded = @JWT::decode($jwt, $publicKey, array('RS256'));
 
-    if((time() - $decoded->iat) > 36000)
-    {
-        http_response_code(401);
-        exit ();
+        if((time() - $decoded->iat) > 36000)
+        {
+            if(!$needed)
+            {
+                http_response_code(401);
+                exit ();
+            }
+        } else {
+            return get_object_vars($decoded);
+        }
     }
-    return get_object_vars($decoded);
+    catch(Exception $e)
+    {
+        if($needed)
+        {
+            throw $e;
+        }
+    }
+    return false;
 }
 
 ?>

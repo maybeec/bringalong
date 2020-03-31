@@ -25,7 +25,7 @@ export class LoggedOutHttpInterceptor implements HttpInterceptor {
         return next
             .handle(request)
             .catch(response => {
-                if (response instanceof HttpErrorResponse && response.status === 403) {
+                if (response instanceof HttpErrorResponse && response.status === 401) {
                     this.store.dispatch(loggedOut());
                 }
                 return throwError(response);

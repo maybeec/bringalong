@@ -22,19 +22,23 @@ export class OrdersComponent implements OnInit, OnDestroy {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
     this.orders$ = this.store.select(state => state.orders.appState.orders);
     this.loggedInSubscription = this.store.select(state => state.app.appState.loggedIn).subscribe(loggedIn => {
       if (!loggedIn) {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(position => this.getOrdersByPosition(position), error => this.getOrdersByIpLatLong());
+          const lat = localStorage.getItem('lat');
+          const long = localStorage.getItem('long');
+          if (lat != null && long != null) {
+              this.getOrdersByLatLong(+lat, +long);
+          } else {
+            navigator.geolocation.getCurrentPosition(position => this.getOrdersByPosition(position), error => this.getOrdersByIpLatLong());
+          }
         } else {
           this.getOrdersByIpLatLong();
         }
       }
     });
     this.userSubscription = this.store.select(state => state.app.appState.user).subscribe(user => {
-      console.log('user', user);
       if (user) {
         this.getOrdersByLatLong(user.lat, user.lng);
       }
@@ -42,12 +46,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
     this.loggedInSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
   }
 
   getOrdersByPosition(position: Position): void {
+    localStorage.setItem('lat', position.coords.latitude.toString());
+    localStorage.setItem('long', position.coords.longitude.toString());
     this.getOrdersByLatLong(position.coords.latitude, position.coords.longitude);
   }
 
