@@ -10,6 +10,8 @@ export * from './loginRequest';
 export * from './loginResponse';
 export * from './logoutResponse';
 export * from './order';
+export * from './registerRequest';
+export * from './registerResponse';
 export * from './updateOrderRequest';
 export * from './updateOrderResponse';
 export * from './user';

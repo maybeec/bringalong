@@ -1,7 +1,7 @@
 <form (ngSubmit)="login()">
-    E-Mail:
+    <div class="headline">E-Mail:</div>
     <input id="email" name="email" [(ngModel)]="email"/>
-    Passwort:
+    <div class="headline">Passwort:</div>
     <input id="password" name="password" type="password" [(ngModel)]="password"/>
-    <button>Login</button>
+    <div><button>Login</button><a routerLink="/register">Registrieren</a></div>
 </form>

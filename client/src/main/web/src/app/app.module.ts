@@ -37,6 +37,9 @@ import { LoginComponent } from './login/login.component';
 import { ShowIfNotLoggedInDirective } from './show-if-not-logged-in.directive';
 import { LoginEffects } from './login/login.effects';
 import { loginReducer } from './login/login.reducer';
+import { RegisterComponent } from './register/register.component';
+import { RegisterEffects } from './register/register.effects';
+import { registerReducer } from './register/register.reducer';
 
 export function apiConfigFactory(): Configuration {
   const config = new Configuration({
@@ -52,6 +55,7 @@ export function apiConfigFactory(): Configuration {
 const routes: Routes = [
   { path: '', component: OrdersComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderComponent },
   { path: 'myOrders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
@@ -72,7 +76,8 @@ const routes: Routes = [
     OrderComponent,
     EditOrderComponent,
     AcceptedOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ const routes: Routes = [
                         acceptedOrders: acceptedOrdersReducer,
                         editOrder: editReducer,
                         newOrder: newOrderReducer,
-                        login: loginReducer }),
+                        login: loginReducer,
+                        register: registerReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
@@ -99,7 +105,8 @@ const routes: Routes = [
                           AcceptedOrdersEffects,
                           EditOrderEffects,
                           NewOrderEffects,
-                          LoginEffects])
+                          LoginEffects,
+                          RegisterEffects])
   ],
   providers: [
     AuthGuardService,

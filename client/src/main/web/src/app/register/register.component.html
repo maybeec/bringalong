@@ -1,0 +1,17 @@
+<form (ngSubmit)="register()">
+    <div class="headline">E-Mail:</div>
+    <input id="email" name="email" [(ngModel)]="email"/>
+    <div class="headline">Passwort:</div>
+    <input id="password" name="password" type="password" [(ngModel)]="password"/>
+    <div class="headline">Passwortwiederholung:</div>
+    <input id="passwordRepeat" name="passwordRepeat" type="password" [(ngModel)]="passwordRepeat"/>
+    <div class="headline">Straße:</div>
+    <input id="street" name="street" [(ngModel)]="street"/>
+    <div class="headline">Hausnummer:</div>
+    <input id="number" name="number" [(ngModel)]="number"/>
+    <div class="headline">PLZ:</div>
+    <input id="zipcode" name="zipcode" [(ngModel)]="zipcode"/>
+    <div class="headline">Ort:</div>
+    <input id="city" name="city" [(ngModel)]="city"/>
+    <div><button [disabled]="!canRegister()">Register</button></div>
+</form>

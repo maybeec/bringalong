@@ -29,6 +29,8 @@ import { GetOrdersResponse } from '../model/getOrdersResponse';
 import { LoginRequest } from '../model/loginRequest';
 import { LoginResponse } from '../model/loginResponse';
 import { LogoutResponse } from '../model/logoutResponse';
+import { RegisterRequest } from '../model/registerRequest';
+import { RegisterResponse } from '../model/registerResponse';
 import { UpdateOrderRequest } from '../model/updateOrderRequest';
 import { UpdateOrderResponse } from '../model/updateOrderResponse';
 
@@ -472,6 +474,50 @@ export class DefaultService {
         ];
 
         return this.httpClient.get<LogoutResponse>(`${this.basePath}/users/logout`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param request 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public register(request?: RegisterRequest, observe?: 'body', reportProgress?: boolean): Observable<RegisterResponse>;
+    public register(request?: RegisterRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RegisterResponse>>;
+    public register(request?: RegisterRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RegisterResponse>>;
+    public register(request?: RegisterRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<RegisterResponse>(`${this.basePath}/users/`,
+            request,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
